@@ -21,15 +21,17 @@ public class Transformation2D {
 		this(new Matrix3D());
 	}
 	
-	/** Revient sur la transformation identite */
-	public void clear() {
-		double d;
-		for (int i = 0; i < 3; i++) {
-			for (int j = 0; j < 3; j++) {
-				d = (i == j ? 1 : 0);
-				matrix.set(i, j, d);
-			}
-		}
+	/** Retourne la transformation inverse */
+	public Transformation2D getInverseTransformation() {
+		Matrix3D inverse = new Matrix3D();
+		inverse.set(0, 2, -matrix.get(0, 2));
+		inverse.set(1, 2, -matrix.get(1, 2));
+		double idet = 1.0 / (matrix.get(0, 0)*matrix.get(1, 1) - matrix.get(0, 1)*matrix.get(1, 0));
+		inverse.set(0, 0,  idet * matrix.get(1, 1));
+		inverse.set(0, 1, -idet * matrix.get(0, 1));
+		inverse.set(1, 0, -idet * matrix.get(1, 0));
+		inverse.set(1, 1,  idet * matrix.get(0, 0));
+		return new Transformation2D(inverse);
 	}
 	
 	/** Calcul le resultat de la transformation par le Point2D p */
@@ -48,6 +50,17 @@ public class Transformation2D {
 			}
 		}
 		return r;
+	}
+	
+	/** Revient sur la transformation identite */
+	public void clear() {
+		double d;
+		for (int i = 0; i < 3; i++) {
+			for (int j = 0; j < 3; j++) {
+				d = (i == j ? 1 : 0);
+				matrix.set(i, j, d);
+			}
+		}
 	}
 	
 	/** Ajoute une translation a la transformation */

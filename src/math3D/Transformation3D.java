@@ -21,15 +21,26 @@ public class Transformation3D {
 		this(new Matrix4D());
 	}
 	
-	/** Revient sur la transformation identite */
-	public void clear() {
-		double d;
-		for (int i = 0; i < 4; i++) {
-			for (int j = 0; j < 4; j++) {
-				d = (i == j ? 1 : 0);
-				matrix.set(i, j, d);
-			}
-		}
+	/** Retourne la transformation inverse */
+	public Transformation3D getInverseTransformation() {
+		Matrix4D inverse = new Matrix4D();
+		inverse.set(0, 3, -matrix.get(0, 3));
+		inverse.set(1, 3, -matrix.get(1, 3));
+		inverse.set(2, 3, -matrix.get(2, 3));
+		double det =  matrix.get(0, 0) * (matrix.get(1, 1)*matrix.get(2, 2) - matrix.get(2, 1)*matrix.get(1, 2))
+					- matrix.get(0, 1) * (matrix.get(1, 0)*matrix.get(2, 2) - matrix.get(2, 0)*matrix.get(1, 2))
+					+ matrix.get(0, 2) * (matrix.get(1, 0)*matrix.get(2, 1) - matrix.get(2, 0)*matrix.get(1, 1));
+		double idet = 1.0 / det;
+		inverse.set(0, 0,  idet * (matrix.get(1, 1)*matrix.get(2, 2) - matrix.get(2, 1)*matrix.get(1, 2)));
+		inverse.set(0, 1, -idet * (matrix.get(0, 1)*matrix.get(2, 2) - matrix.get(2, 1)*matrix.get(0, 2)));
+		inverse.set(0, 2,  idet * (matrix.get(0, 1)*matrix.get(1, 2) - matrix.get(1, 1)*matrix.get(0, 2)));
+		inverse.set(1, 0, -idet * (matrix.get(1, 0)*matrix.get(2, 2) - matrix.get(2, 0)*matrix.get(1, 2)));
+		inverse.set(1, 1,  idet * (matrix.get(0, 0)*matrix.get(2, 2) - matrix.get(2, 0)*matrix.get(0, 2)));
+		inverse.set(1, 2, -idet * (matrix.get(0, 0)*matrix.get(1, 2) - matrix.get(1, 0)*matrix.get(0, 2)));
+		inverse.set(2, 0,  idet * (matrix.get(1, 0)*matrix.get(2, 1) - matrix.get(2, 0)*matrix.get(1, 1)));
+		inverse.set(2, 1, -idet * (matrix.get(0, 0)*matrix.get(2, 1) - matrix.get(2, 0)*matrix.get(0, 1)));
+		inverse.set(2, 2,  idet * (matrix.get(0, 0)*matrix.get(1, 1) - matrix.get(1, 0)*matrix.get(0, 1)));
+		return new Transformation3D(inverse);
 	}
 	
 	/** Calcul le resultat de la transformation par le Point3D p */
@@ -48,6 +59,17 @@ public class Transformation3D {
 			}
 		}
 		return r;
+	}
+	
+	/** Revient sur la transformation identite */
+	public void clear() {
+		double d;
+		for (int i = 0; i < 4; i++) {
+			for (int j = 0; j < 4; j++) {
+				d = (i == j ? 1 : 0);
+				matrix.set(i, j, d);
+			}
+		}
 	}
 	
 	/** Ajoute une translation a la transformation */
