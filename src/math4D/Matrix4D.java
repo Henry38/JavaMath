@@ -65,11 +65,6 @@ public class Matrix4D {
 	/** Retourne la matrice inverse */
 	public Matrix4D getInverse() {
 		Matrix4D m = new Matrix4D();
-//		double idet = 1.0 / getDeterminant();
-//		double m00 = ;
-//		double m01 = ;
-//		double m02 = ;
-//		double m03 = ;
 		double idet = 1.0 / getDeterminant();
 		for (int i = 0; i < 4; i++) {
 			for (int j = 0; j < 4; j++) {

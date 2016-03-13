@@ -23,23 +23,6 @@ public class Transformation3D {
 	
 	/** Retourne la transformation inverse */
 	public Transformation3D getInverseTransformation() {
-//		Matrix4D inverse = new Matrix4D();
-//		inverse.set(0, 3, -matrix.get(0, 3));
-//		inverse.set(1, 3, -matrix.get(1, 3));
-//		inverse.set(2, 3, -matrix.get(2, 3));
-//		double det =  matrix.get(0, 0) * (matrix.get(1, 1)*matrix.get(2, 2) - matrix.get(2, 1)*matrix.get(1, 2))
-//					- matrix.get(0, 1) * (matrix.get(1, 0)*matrix.get(2, 2) - matrix.get(2, 0)*matrix.get(1, 2))
-//					+ matrix.get(0, 2) * (matrix.get(1, 0)*matrix.get(2, 1) - matrix.get(2, 0)*matrix.get(1, 1));
-//		double idet = 1.0 / det;
-//		inverse.set(0, 0,  idet * (matrix.get(1, 1)*matrix.get(2, 2) - matrix.get(2, 1)*matrix.get(1, 2)));
-//		inverse.set(0, 1, -idet * (matrix.get(0, 1)*matrix.get(2, 2) - matrix.get(2, 1)*matrix.get(0, 2)));
-//		inverse.set(0, 2,  idet * (matrix.get(0, 1)*matrix.get(1, 2) - matrix.get(1, 1)*matrix.get(0, 2)));
-//		inverse.set(1, 0, -idet * (matrix.get(1, 0)*matrix.get(2, 2) - matrix.get(2, 0)*matrix.get(1, 2)));
-//		inverse.set(1, 1,  idet * (matrix.get(0, 0)*matrix.get(2, 2) - matrix.get(2, 0)*matrix.get(0, 2)));
-//		inverse.set(1, 2, -idet * (matrix.get(0, 0)*matrix.get(1, 2) - matrix.get(1, 0)*matrix.get(0, 2)));
-//		inverse.set(2, 0,  idet * (matrix.get(1, 0)*matrix.get(2, 1) - matrix.get(2, 0)*matrix.get(1, 1)));
-//		inverse.set(2, 1, -idet * (matrix.get(0, 0)*matrix.get(2, 1) - matrix.get(2, 0)*matrix.get(0, 1)));
-//		inverse.set(2, 2,  idet * (matrix.get(0, 0)*matrix.get(1, 1) - matrix.get(1, 0)*matrix.get(0, 1)));
 		return new Transformation3D(matrix.getInverse());
 	}
 	
