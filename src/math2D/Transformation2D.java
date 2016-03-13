@@ -23,15 +23,7 @@ public class Transformation2D {
 	
 	/** Retourne la transformation inverse */
 	public Transformation2D getInverseTransformation() {
-		Matrix3D inverse = new Matrix3D();
-		inverse.set(0, 2, -matrix.get(0, 2));
-		inverse.set(1, 2, -matrix.get(1, 2));
-		double idet = 1.0 / (matrix.get(0, 0)*matrix.get(1, 1) - matrix.get(0, 1)*matrix.get(1, 0));
-		inverse.set(0, 0,  idet * matrix.get(1, 1));
-		inverse.set(0, 1, -idet * matrix.get(0, 1));
-		inverse.set(1, 0, -idet * matrix.get(1, 0));
-		inverse.set(1, 1,  idet * matrix.get(0, 0));
-		return new Transformation2D(inverse);
+		return new Transformation2D(matrix.getInverse());
 	}
 	
 	/** Calcul le resultat de la transformation par le Point2D p */

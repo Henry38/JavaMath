@@ -1,5 +1,7 @@
 package math4D;
 
+import math3D.Matrix3D;
+
 public class Matrix4D {
 	
 	private double[][] matrix;
@@ -32,6 +34,51 @@ public class Matrix4D {
 	/** Set l'element ligne i, colonne j */
 	public void set(int i, int j, double d) {
 		matrix[i][j] = d;
+	}
+	
+	/** Retourne la matrice privee de la ligne u et de la colonne v */
+	public Matrix3D getSubMatrix(int u, int v) {
+		Matrix3D m = new Matrix3D();
+		for (int i = 0; i < 4; i++) {
+			int idest = (i > u ? i-1 : i);
+			for (int j = 0; j < 4; j++) {
+				int jdest = (j > v ? j-1 : j);
+				if (i != u && j != v) {
+					m.set(idest, jdest, get(i, j));
+				}
+			}
+		}
+		return m;
+	}
+	
+	/** Retourne le determinant de la matrice */
+	public double getDeterminant() {
+		double det = 0.0;
+		int i = 1;
+		for (int n = 0; n < 4; n++, i *= -1) {
+			Matrix3D subMat = getSubMatrix(0, n);
+			det += get(0, n) * subMat.getDeterminant() * i;
+		}
+		return det;
+	}
+	
+	/** Retourne la matrice inverse */
+	public Matrix4D getInverse() {
+		Matrix4D m = new Matrix4D();
+//		double idet = 1.0 / getDeterminant();
+//		double m00 = ;
+//		double m01 = ;
+//		double m02 = ;
+//		double m03 = ;
+		double idet = 1.0 / getDeterminant();
+		for (int i = 0; i < 4; i++) {
+			for (int j = 0; j < 4; j++) {
+				int sign = 1 - ((i + j) % 2 ) * 2;
+				Matrix3D subMat = getSubMatrix(j, i);
+				m.set(i, j, idet * subMat.getDeterminant() * sign);
+			}
+		}
+		return m;
 	}
 	
 	/** Retourne la multiplication matricielle par la matrice matrix */

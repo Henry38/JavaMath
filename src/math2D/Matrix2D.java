@@ -32,6 +32,22 @@ public class Matrix2D {
 		matrix[i][j] = d;
 	}
 	
+	/** Retourne le determinant de la matrice */
+	public double getDeterminant() {
+		return (get(0, 0)*get(1, 1) - get(0, 1)*get(1, 0));
+	}
+	
+	/** Retourne la matrice inverse */
+	public Matrix2D getInverse() {
+		Matrix2D m = new Matrix2D();
+		double idet = 1.0 / getDeterminant();
+		m.set(0, 0,  idet * get(1, 1));
+		m.set(0, 1, -idet * get(0, 1));
+		m.set(1, 0, -idet * get(1, 0));
+		m.set(1, 1,  idet * get(0, 0));
+		return m;
+	}
+	
 	/** Retourne la multiplication matricielle par la matrice matrix */
 	public Matrix2D mult(Matrix2D matrix) {
 		Matrix2D res = new Matrix2D();
