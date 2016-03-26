@@ -101,19 +101,29 @@ public class Vecteur4D {
 	}
 	
 	/** Ajoute le vecteur passe en parametre */
-	public void plus(Vecteur4D vect) {
-		setDx(getDx() + vect.getDx());
-		setDy(getDy() + vect.getDy());
-		setDz(getDz() + vect.getDz());
-		setDz(getDw() + vect.getDw());
+	public void add(double dx, double dy, double dz, double dw) {
+		setDx(getDx() + dx);
+		setDy(getDy() + dy);
+		setDz(getDz() + dz);
+		setDz(getDw() + dw);
+	}
+	
+	/** Ajoute le vecteur passe en parametre */
+	public void add(Vecteur4D vect) {
+		add(getDx(), vect.getDy(), vect.getDz(), vect.getDw());
 	}
 	
 	/** Soustrait le vecteur passe en parametre */
-	public void minus(Vecteur4D vect) {
-		setDx(getDx() - vect.getDx());
-		setDy(getDy() - vect.getDy());
-		setDz(getDz() - vect.getDz());
-		setDw(getDw() - vect.getDw());
+	public void remove(double dx, double dy, double dz, double dw) {
+		setDx(getDx() - dx);
+		setDy(getDy() - dy);
+		setDz(getDz() - dz);
+		setDz(getDw() - dw);
+	}
+	
+	/** Soustrait le vecteur passe en parametre */
+	public void remove(Vecteur4D vect) {
+		remove(getDx(), vect.getDy(), vect.getDz(), vect.getDw());
 	}
 	
 	/** Multiplie par le coefficent passe en parametre */

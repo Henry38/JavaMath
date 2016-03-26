@@ -97,17 +97,27 @@ public class Vecteur3D {
 	}
 	
 	/** Ajoute le vecteur passe en parametre */
-	public void plus(Vecteur3D vect) {
-		setDx(getDx() + vect.getDx());
-		setDy(getDy() + vect.getDy());
-		setDz(getDz() + vect.getDz());
+	public void add(double dx, double dy, double dz) {
+		setDx(getDx() + dx);
+		setDy(getDy() + dy);
+		setDz(getDz() + dz);
+	}
+	
+	/** Ajoute le vecteur passe en parametre */
+	public void add(Vecteur3D vect) {
+		add(vect.getDx(), vect.getDy(), vect.getDz());
 	}
 	
 	/** Soustrait le vecteur passe en parametre */
-	public void minus(Vecteur3D vect) {
-		setDx(getDx() - vect.getDx());
-		setDy(getDy() - vect.getDy());
-		setDz(getDz() - vect.getDz());
+	public void remove(double dx, double dy, double dz) {
+		setDx(getDx() - dx);
+		setDy(getDy() - dy);
+		setDz(getDz() - dz);
+	}
+	
+	/** Soustrait le vecteur passe en parametre */
+	public void remove(Vecteur3D vect) {
+		remove(vect.getDx(), vect.getDy(), vect.getDz());
 	}
 	
 	/** Multiplie par le coefficent passe en parametre */

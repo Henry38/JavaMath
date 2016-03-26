@@ -82,15 +82,25 @@ public class Vecteur2D {
 	}
 	
 	/** Ajoute le vecteur passe en parametre */
-	public void plus(Vecteur2D vect) {
-		setDx(getDx() + vect.getDx());
-		setDy(getDy() + vect.getDy());
+	public void add(double dx, double dy) {
+		setDx(getDx() + dx);
+		setDy(getDy() + dy);
+	}
+	
+	/** Ajoute le vecteur passe en parametre */
+	public void add(Vecteur2D vect) {
+		add(vect.getDx(), vect.getDy());
 	}
 	
 	/** Soustrait le vecteur passe en parametre */
-	public void minus(Vecteur2D vect) {
-		setDx(getDx() - vect.getDx());
-		setDy(getDy() - vect.getDy());
+	public void remove(double dx, double dy) {
+		setDx(getDx() - dx);
+		setDy(getDy() - dy);
+	}
+	
+	/** Soustrait le vecteur passe en parametre */
+	public void remove(Vecteur2D vect) {
+		remove(vect.getDx(), vect.getDy());
 	}
 	
 	/** Multiplie par le coefficent passe en parametre */
