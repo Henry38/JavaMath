@@ -46,6 +46,12 @@ public class Point2D {
 		this.y = y;
 	}
 	
+	/** Set les composantes du point */
+	public void set(double x, double y) {
+		setX(x);
+		setY(y);
+	}
+	
 	/** Retourne la distance a l'origine */
 	public double getModule() {
 		return Math.sqrt(getX()*getX() + getY()*getY());

@@ -75,6 +75,14 @@ public class Vecteur4D {
 		this.dist_w = dist_w;
 	}
 	
+	/** Set les composantes du vecteur */
+	public void set(double dist_x, double dist_y, double dist_z, double dist_w) {
+		setDx(dist_x);
+		setDy(dist_y);
+		setDz(dist_z);
+		setDw(dist_w);
+	}
+	
 	/** Retourne la norme du vecteur */
 	public double getNorme() {
 		return Math.sqrt(Math.pow(getDx(), 2) + Math.pow(getDy(), 2) + Math.pow(getDz(), 2) + Math.pow(getDw(), 2));

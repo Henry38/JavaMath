@@ -51,6 +51,13 @@ public class Point3D {
 		this.y = y;
 	}
 	
+	/** Set les composantes du point */
+	public void set(double x, double y, double z) {
+		setX(x);
+		setY(y);
+		setZ(z);
+	}
+	
 	/** Set la composante z du point */
 	public void setZ(double z) {
 		this.z = z;

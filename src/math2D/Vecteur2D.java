@@ -51,6 +51,12 @@ public class Vecteur2D {
 		this.dist_y = dist_y;
 	}
 	
+	/** Set les composantes du vecteur */
+	public void set(double dist_x, double dist_y) {
+		setDx(dist_x);
+		setDy(dist_y);
+	}
+	
 	/** Retourne la norme du vecteur */
 	public double getNorme() {
 		return Math.sqrt(Math.pow(getDx(), 2) + Math.pow(getDy(), 2));

@@ -67,6 +67,14 @@ public class Point4D {
 		this.w = w;
 	}
 	
+	/** Set les composantes du point */
+	public void set(double x, double y, double z, double w) {
+		setX(x);
+		setY(y);
+		setZ(z);
+		setW(w);
+	}
+	
 	/** Retourne la distance a l'origine */
 	public double getModule() {
 		return Math.sqrt(getX()*getX() + getY()*getY() + getZ()*getZ() + getW()*getW());

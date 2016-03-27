@@ -63,6 +63,13 @@ public class Vecteur3D {
 		this.dist_z = dist_z;
 	}
 	
+	/** Set les composantes du vecteur */
+	public void set(double dist_x, double dist_y, double dist_z) {
+		setDx(dist_x);
+		setDy(dist_y);
+		setDz(dist_z);
+	}
+	
 	/** Retourne la norme du vecteur */
 	public double getNorme() {
 		return Math.sqrt(Math.pow(getDx(), 2) + Math.pow(getDy(), 2) + Math.pow(getDz(), 2));
