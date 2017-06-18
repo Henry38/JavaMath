@@ -2,7 +2,7 @@ package math3D;
 
 public class Point3D {
 	
-	private double x, y, z;
+	public double x, y, z;
 	
 	/** Constructeur */
 	public Point3D(double x, double y, double z) {

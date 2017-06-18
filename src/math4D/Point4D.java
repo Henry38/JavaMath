@@ -2,7 +2,7 @@ package math4D;
 
 public class Point4D {
 	
-	private double x, y, z, w;
+	public double x, y, z, w;
 	
 	/** Constructeur */
 	public Point4D(double x, double y, double z, double w) {

@@ -2,8 +2,8 @@ package math2D;
 
 public class Point2D {
 	
-	private double x;
-	private double y;
+	public double x;
+	public double y;
 	
 	/** Constructeur */
 	public Point2D(double x, double y) {
