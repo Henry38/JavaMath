@@ -21,6 +21,33 @@ public class Transformation2D {
 		this(new Matrix3D());
 	}
 	
+	public static class Translation extends Transformation2D {
+		
+		/** Constructeur */
+		public Translation(double dx, double dy) {
+			super();
+			addTranslation(dx, dy);
+		}
+	}
+	
+	public static class Rotation extends Transformation2D {
+		
+		/** Constructeur */
+		public Rotation(double radian) {
+			super();
+			addRotation(radian);
+		}
+	}
+	
+	public static class Scale extends Transformation2D {
+		
+		/** Constructeur */
+		public Scale(double sx, double sy) {
+			super();
+			addScale(sx, sy);
+		}
+	}
+	
 	/** Calcule et retourne la Base2D associee a la transformation */
 	public Base2D toBase2D() {
 		double x1 = matrix.get(0, 0);
