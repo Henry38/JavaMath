@@ -104,6 +104,11 @@ public class Point3D {
 		rotation(new Vecteur3D(x, y, z), radian);
 	}
 	
+	/** Retourne la distance entre les deux points */
+	public double distance(Point3D p) {
+		return Point3D.distance(this, p);
+	}
+	
 	/** Representation textuelle d'un Point3D */
 	public String toString() {
 		return "(" + getX() + ", " + getY() + ", " + getZ() + ")";

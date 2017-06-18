@@ -93,6 +93,11 @@ public class Point4D {
 		translation(t.getDx(), t.getDy(), t.getDz(), t.getDw());
 	}
 	
+	/** Retourne la distance entre les deux points */
+	public double distance(Point4D p) {
+		return Point4D.distance(this, p);
+	}
+	
 	/** Representation textuelle d'un Point3D */
 	public String toString() {
 		return "(" + getX() + ", " + getY() + ", " + getZ() + ", " + getW() + ")";

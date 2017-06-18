@@ -84,6 +84,11 @@ public class Point2D {
 		setY(sy * getY());
 	}
 	
+	/** Retourne la distance entre les deux points */
+	public double distance(Point2D p) {
+		return Point2D.distance(this, p);
+	}
+	
 	/** Representation textuelle d'un Point2D */
 	public String toString() {
 		return "(" + getX() + ", " + getY() + ")";
