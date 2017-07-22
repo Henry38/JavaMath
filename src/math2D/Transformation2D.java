@@ -21,6 +21,14 @@ public class Transformation2D {
 		this(new Matrix3D());
 	}
 	
+	public static class Identity extends Transformation2D {
+		
+		/** Constructeur */
+		public Identity(double dx, double dy) {
+			super();
+		}
+	}
+
 	public static class Translation extends Transformation2D {
 		
 		/** Constructeur */
