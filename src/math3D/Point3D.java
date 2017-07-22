@@ -80,7 +80,7 @@ public class Point3D {
 		translation(t.getDx(), t.getDy(), t.getDz());
 	}
 	
-	/** Rotation du point autour d'un axe (dx, dy, dz) et avec un angle donne en radian */
+	/** Rotation du point autour d'un axe (dx, dy, dz) avec un angle donne en radian */
 	public void rotation(double dx, double dy, double dz, double radian) {
 		double x = getX();
 		double y = getY();
@@ -98,7 +98,7 @@ public class Point3D {
 				z * (Math.pow(dz, 2) + (1 - Math.pow(dz, 2)) * cos) );
 	}
 	
-	/** Rotation du point autour d'un axe et avec un angle donne en radian */
+	/** Rotation du point autour d'un axe avec un angle donne en radian */
 	public void rotation(Vecteur3D axis, double radian) {
 		Vecteur3D unit = axis.getVecteurUnitaire();
 		double dx = unit.getDx();

@@ -68,7 +68,7 @@ public class Point2D {
 		translation(t.getDx(), t.getDy());
 	}
 	
-	/** Rotation dans le sens trigonometrique avec l'angle donne en radian */
+	/** Rotation autour de l'origine dans le sens trigonometrique avec l'angle donne en radian */
 	public void rotation(double radian) {
 		double x = getX();
 		double y = getY();
@@ -78,7 +78,16 @@ public class Point2D {
 		setY((x * sin) + (y * cos));
 	}
 	
-	/** Homothetie du point */
+	/** Rotation autour d'un point p dans le sens trigonometrique avec l'angle donne en radian */
+	public void rotation(Point2D p, double radian) {
+		double tx = p.getX();
+		double ty = p.getY();
+		translation(-tx, -ty);
+		rotation(radian);
+		translation(tx, ty);
+	}
+	
+	/** Homothetie du point par rapport */
 	public void scale(double sx, double sy) {
 		setX(sx * getX());
 		setY(sy * getY());
