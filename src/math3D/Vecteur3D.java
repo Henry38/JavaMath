@@ -134,23 +134,31 @@ public class Vecteur3D {
 		setDz(k * getDz());
 	}
 	
-	/** Rotation dans le sens trigonometrique autour d'un axe et avec un angle donne en radian */
-	public void rotation(Vecteur3D axe, double radian) {
+	/** Rotation du vecteur autour d'un axe (dx, dy, dz) avec un angle donne en radian */
+	public void rotation(double dx, double dy, double dz, double radian) {
 		double x = getDx();
 		double y = getDy();
 		double z = getDz();
 		double cos = Math.cos(radian);
 		double sin = Math.sin(radian);
-		Vecteur3D vect = axe.getVecteurUnitaire();
-		setDx(  x * (Math.pow(vect.getDx(), 2) + (1 - Math.pow(vect.getDx(), 2)) * cos) +
-				y * (vect.getDx()*vect.getDy() * (1 - cos) - vect.getDz()*sin) +
-				z * (vect.getDx()*vect.getDz() * (1 - cos) + vect.getDy()*sin) );
-		setDy(  x * (vect.getDx()*vect.getDy() * (1 - cos) + vect.getDz()*sin) +
-				y * (Math.pow(vect.getDy(), 2) + (1 - Math.pow(vect.getDy(), 2)) * cos) +
-				z * (vect.getDy()*vect.getDz() * (1 - cos) - vect.getDx()*sin) );
-		setDz(  x * (vect.getDx()*vect.getDz() * (1 - cos) - vect.getDy()*sin) +
-				y * (vect.getDy()*vect.getDz() * (1 - cos) + vect.getDx()*sin) +
-				z * (Math.pow(vect.getDz(), 2) + (1 - Math.pow(vect.getDz(), 2)) * cos) );
+		setDx(  x * (Math.pow(dx, 2) + (1 - Math.pow(dx, 2)) * cos) +
+				y * (dx*dy * (1 - cos) - dz*sin) +
+				z * (dx*dz * (1 - cos) + dy*sin) );
+		setDy(  x * (dx*dy * (1 - cos) + dz*sin) +
+				y * (Math.pow(dy, 2) + (1 - Math.pow(dy, 2)) * cos) +
+				z * (dy*dz * (1 - cos) - dx*sin) );
+		setDz(  x * (dx*dz * (1 - cos) - dy*sin) +
+				y * (dy*dz * (1 - cos) + dx*sin) +
+				z * (Math.pow(dz, 2) + (1 - Math.pow(dz, 2)) * cos) );
+	}
+	
+	/** Rotation du vecteur autour d'un axe avec un angle donne en radian */
+	public void rotation(Vecteur3D axis, double radian) {
+		Vecteur3D unit = axis.getVecteurUnitaire();
+		double dx = unit.getDx();
+		double dy = unit.getDy();
+		double dz = unit.getDz();
+		rotation(dx, dy, dz, radian);
 	}
 	
 	/** Representation textuelle d'un Vecteur2D */

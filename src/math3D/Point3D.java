@@ -80,28 +80,31 @@ public class Point3D {
 		translation(t.getDx(), t.getDy(), t.getDz());
 	}
 	
-	/** Rotation du point autour d'un axe et avec un angle donne */
-	public void rotation(Vecteur3D axe, double radian) {
+	/** Rotation du point autour d'un axe (dx, dy, dz) et avec un angle donne en radian */
+	public void rotation(double dx, double dy, double dz, double radian) {
 		double x = getX();
 		double y = getY();
 		double z = getZ();
 		double cos = Math.cos(radian);
 		double sin = Math.sin(radian);
-		Vecteur3D vect = axe.getVecteurUnitaire();
-		setX(   x * (Math.pow(vect.getDx(), 2) + (1 - Math.pow(vect.getDx(), 2)) * cos) +
-				y * (vect.getDx()*vect.getDy() * (1 - cos) - vect.getDz()*sin) +
-				z * (vect.getDx()*vect.getDz() * (1 - cos) + vect.getDy()*sin) );
-		setY(   x * (vect.getDx()*vect.getDy() * (1 - cos) + vect.getDz()*sin) +
-				y * (Math.pow(vect.getDy(), 2) + (1 - Math.pow(vect.getDy(), 2)) * cos) +
-				z * (vect.getDy()*vect.getDz() * (1 - cos) - vect.getDx()*sin) );
-		setZ(   x * (vect.getDx()*vect.getDz() * (1 - cos) - vect.getDy()*sin) +
-				y * (vect.getDy()*vect.getDz() * (1 - cos) + vect.getDx()*sin) +
-				z * (Math.pow(vect.getDz(), 2) + (1 - Math.pow(vect.getDz(), 2)) * cos) );
+		setX(   x * (Math.pow(dx, 2) + (1 - Math.pow(dx, 2)) * cos) +
+				y * (dx*dy * (1 - cos) - dz*sin) +
+				z * (dx*dz * (1 - cos) + dy*sin) );
+		setY(   x * (dx*dy * (1 - cos) + dz*sin) +
+				y * (Math.pow(dy, 2) + (1 - Math.pow(dy, 2)) * cos) +
+				z * (dy*dz * (1 - cos) - dx*sin) );
+		setZ(   x * (dx*dz * (1 - cos) - dy*sin) +
+				y * (dy*dz * (1 - cos) + dx*sin) +
+				z * (Math.pow(dz, 2) + (1 - Math.pow(dz, 2)) * cos) );
 	}
 	
-	/** Rotation du point autour d'un axe (dx, dy, dz) et avec un angle donne */
-	public void rotation(double dx, double dy, double dz, double radian) {
-		rotation(new Vecteur3D(x, y, z), radian);
+	/** Rotation du point autour d'un axe et avec un angle donne en radian */
+	public void rotation(Vecteur3D axis, double radian) {
+		Vecteur3D unit = axis.getVecteurUnitaire();
+		double dx = unit.getDx();
+		double dy = unit.getDy();
+		double dz = unit.getDz();
+		rotation(dx, dy, dz, radian);
 	}
 	
 	/** Retourne la distance entre les deux points */
