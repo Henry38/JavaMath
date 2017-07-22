@@ -86,7 +86,7 @@ public class Vecteur3D {
 	}
 	
 	/** Retourne la projection du vecteur courant sur le vecteur passe en parametre */
-	public Vecteur3D getProjection(Vecteur3D vect) {
+	public Vecteur3D getProjectionOn(Vecteur3D vect) {
 		double norme = (Vecteur3D.produit_scalaire(this, vect)) / Math.pow(vect.getNorme(), 2);
 		double dx, dy, dz;
 		dx = getDx() * norme;

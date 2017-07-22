@@ -72,7 +72,7 @@ public class Vecteur2D {
 	}
 	
 	/** Retourne la projection du vecteur courant sur le vecteur passe en parametre */
-	public Vecteur2D getProjection(Vecteur2D vect) {
+	public Vecteur2D getProjectionOn(Vecteur2D vect) {
 		double norme = (Vecteur2D.produit_scalaire(this, vect)) / Math.pow(vect.getNorme(), 2);
 		double dx, dy;
 		dx = getDx() * norme;
