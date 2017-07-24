@@ -67,12 +67,17 @@ public class Point4D {
 		this.w = w;
 	}
 	
-	/** Set les composantes du point */
+	/** Set les 4 composantes du point */
 	public void set(double x, double y, double z, double w) {
 		setX(x);
 		setY(y);
 		setZ(z);
 		setW(w);
+	}
+	
+	/** Set les 4 composantes du point */
+	public void set(Point4D p) {
+		set(p.getX(), p.getY(), p.getZ(), p.getW());
 	}
 	
 	/** Retourne la distance a l'origine */
@@ -81,16 +86,17 @@ public class Point4D {
 	}
 	
 	/** Translate le point */
-	public void translation(double dx, double dy, double dz, double dw) {
+	public Point4D translation(double dx, double dy, double dz, double dw) {
 		setX(getX() + dx);
 		setY(getY() + dy);
 		setZ(getZ() + dz);
 		setZ(getW() + dw);
+		return this;
 	}
 	
 	/** Translate le point */
-	public void translation(Vecteur4D t) {
-		translation(t.getDx(), t.getDy(), t.getDz(), t.getDw());
+	public Point4D translation(Vecteur4D vect) {
+		return translation(vect.getDx(), vect.getDy(), vect.getDz(), vect.getDw());
 	}
 	
 	/** Retourne la distance entre les deux points */
@@ -106,6 +112,6 @@ public class Point4D {
 	/** Retourne la distance entre deux points */
 	public static double distance(Point4D p1, Point4D p2) {
 		Vecteur4D vect = new Vecteur4D(p1, p2);
-		return vect.getNorme();
+		return vect.getNorm();
 	}
 }

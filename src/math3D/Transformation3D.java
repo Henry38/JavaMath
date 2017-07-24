@@ -87,7 +87,7 @@ public class Transformation3D {
 		double x = matrix.get(0, 3);
 		double y = matrix.get(1, 3);
 		double z = matrix.get(2, 3);
-		double d = axe.getNorme();
+		double d = axe.getNorm();
 		double dx = axe.getDx() / d;
 		double dy = axe.getDy() / d;
 		double dz = axe.getDz() / d;

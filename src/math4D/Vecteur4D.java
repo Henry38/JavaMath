@@ -75,7 +75,7 @@ public class Vecteur4D {
 		this.dist_w = dist_w;
 	}
 	
-	/** Set les composantes du vecteur */
+	/** Set les 4 composantes du vecteur */
 	public void set(double dist_x, double dist_y, double dist_z, double dist_w) {
 		setDx(dist_x);
 		setDy(dist_y);
@@ -83,29 +83,34 @@ public class Vecteur4D {
 		setDw(dist_w);
 	}
 	
+	/** Set les 4 composantes du vecteur */
+	public void set(Vecteur4D vect) {
+		set(vect.getDx(), vect.getDy(), vect.getDz(), vect.getDw());
+	}
+	
 	/** Retourne la norme du vecteur */
-	public double getNorme() {
+	public double getNorm() {
 		return Math.sqrt(Math.pow(getDx(), 2) + Math.pow(getDy(), 2) + Math.pow(getDz(), 2) + Math.pow(getDw(), 2));
 	}
 	
 	/** Retourne le vecteur unitaire */
 	public Vecteur4D getVecteurUnitaire() {
-		double norme = getNorme();
+		double norm = getNorm();
 		double dx, dy, dz, dw;
-		dx = getDx() / norme;
-		dy = getDy() / norme;
-		dz = getDz() / norme;
-		dw = getDw() / norme;
+		dx = getDx() / norm;
+		dy = getDy() / norm;
+		dz = getDz() / norm;
+		dw = getDw() / norm;
 		return new Vecteur4D(dx, dy, dz, dw);
 	}
 	
 	/** Normalise le vecteur */
 	public void normalized() {
-		double norme = getNorme();
-		setDx(getDx() / norme);
-		setDy(getDy() / norme);
-		setDz(getDz() / norme);
-		setDw(getDw() / norme);
+		double norm = getNorm();
+		setDx(getDx() / norm);
+		setDy(getDy() / norm);
+		setDz(getDz() / norm);
+		setDw(getDw() / norm);
 	}
 	
 	/** Ajoute le vecteur passe en parametre */

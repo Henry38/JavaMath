@@ -51,78 +51,98 @@ public class Vecteur2D {
 		this.dist_y = dist_y;
 	}
 	
-	/** Set les composantes du vecteur */
+	/** Set les 2 composantes du vecteur */
 	public void set(double dist_x, double dist_y) {
 		setDx(dist_x);
 		setDy(dist_y);
 	}
 	
+	/** Set les 2 composantes du vecteur */
+	public void set(Vecteur2D vect) {
+		set(vect.getDx(), vect.getDy());
+	}
+	
 	/** Retourne la norme du vecteur */
-	public double getNorme() {
+	public double getNorm() {
 		return Math.sqrt(Math.pow(getDx(), 2) + Math.pow(getDy(), 2));
 	}
 	
 	/** Retourne le vecteur unitaire */
-	public Vecteur2D getVecteurUnitaire() {
-		double norme = getNorme();
-		double dx, dy;
-		dx = getDx() / norme;
-		dy = getDy() / norme;
-		return new Vecteur2D(dx, dy);
+	public Vecteur2D getUnitVector() {
+		Vecteur2D vect = new Vecteur2D(this);
+		vect.normalize();
+		return vect;
 	}
 	
-	/** Retourne la projection du vecteur courant sur le vecteur passe en parametre */
-	public Vecteur2D getProjectionOn(Vecteur2D vect) {
-		double norme = (Vecteur2D.produit_scalaire(this, vect)) / Math.pow(vect.getNorme(), 2);
+	/** Retourne l'oppose du vecteur */
+	public Vecteur2D getInverse() {
+		Vecteur2D vect = new Vecteur2D(this);
+		vect.inverse();
+		return vect;
+	}
+	
+	/** Retourne la projection du vecteur passe en parametre sur le vecteur courant */
+	public Vecteur2D getProjected(Vecteur2D vect) {
+		double norm = (Vecteur2D.scalar_product(this, vect)) / Math.pow(vect.getNorm(), 2);
 		double dx, dy;
-		dx = getDx() * norme;
-		dy = getDy() * norme;
+		dx = getDx() * norm;
+		dy = getDy() * norm;
 		return new Vecteur2D(dx, dy);
 	}
 	
 	/** Normalise le vecteur */
-	public void normalized() {
-		double norme = getNorme();
-		setDx(getDx() / norme);
-		setDy(getDy() / norme);
+	public void normalize() {
+		double norm = getNorm();
+		setDx(getDx() / norm);
+		setDy(getDy() / norm);
+	}
+	
+	/** Inverse le vecteur */
+	public void inverse() {
+		setDx(-getDx());
+		setDy(-getDy());
 	}
 	
 	/** Ajoute le vecteur passe en parametre */
-	public void add(double dx, double dy) {
+	public Vecteur2D add(double dx, double dy) {
 		setDx(getDx() + dx);
 		setDy(getDy() + dy);
+		return this;
 	}
 	
 	/** Ajoute le vecteur passe en parametre */
-	public void add(Vecteur2D vect) {
-		add(vect.getDx(), vect.getDy());
+	public Vecteur2D add(Vecteur2D vect) {
+		return add(vect.getDx(), vect.getDy());
 	}
 	
 	/** Soustrait le vecteur passe en parametre */
-	public void remove(double dx, double dy) {
+	public Vecteur2D remove(double dx, double dy) {
 		setDx(getDx() - dx);
 		setDy(getDy() - dy);
+		return this;
 	}
 	
 	/** Soustrait le vecteur passe en parametre */
-	public void remove(Vecteur2D vect) {
-		remove(vect.getDx(), vect.getDy());
+	public Vecteur2D remove(Vecteur2D vect) {
+		return remove(vect.getDx(), vect.getDy());
 	}
 	
 	/** Multiplie par le coefficent passe en parametre */
-	public void mult(double k) {
+	public Vecteur2D mult(double k) {
 		setDx(k * getDx());
 		setDy(k * getDy());
+		return this;
 	}
 	
 	/** Rotation dans le sens trigonometrique avec un angle donne en radian */
-	public void rotation(double radian) {
+	public Vecteur2D rotation(double radian) {
 		double x = getDx();
 		double y = getDy();
 		double cos = Math.cos(radian);
 		double sin = Math.sin(radian);
 		setDx((x * cos) - (y * sin));
 		setDy((x * sin) + (y * cos));
+		return this;
 	}
 	
 	/** Representation textuelle d'un Vecteur2D */
@@ -131,28 +151,28 @@ public class Vecteur2D {
 	}
 	
 	/** Retourne le produit scalaire de deux vecteurs */
-	public static double produit_scalaire(Vecteur2D vect1, Vecteur2D vect2) {
+	public static double scalar_product(Vecteur2D vect1, Vecteur2D vect2) {
 		return (vect1.getDx() * vect2.getDx() + vect1.getDy() * vect2.getDy());
 	}
 	
-	/** Retourne le produit vectoriel de deux vecteurs en 2 dimensions */
-	public static double produit_vectoriel(Vecteur2D vect1, Vecteur2D vect2) {
+	/** Retourne le produit vectoriel de deux vecteurs */
+	public static double cross_product(Vecteur2D vect1, Vecteur2D vect2) {
 		return (vect1.getDx() * vect2.getDy() - vect1.getDy() * vect2.getDx());
 	}
 	
 	/** Retourne le cosinus de l'angle forme par deux vecteurs */
 	public static double cosinus_angle(Vecteur2D vect1, Vecteur2D vect2) {
-		return (produit_scalaire(vect1, vect2) / (vect1.getNorme() * vect2.getNorme()));
+		return (scalar_product(vect1, vect2) / (vect1.getNorm() * vect2.getNorm()));
 	}
 	
 	/** Retourne le sinus de l'angle forme par deux vecteurs */
 	public static double sinus_angle(Vecteur2D vect1, Vecteur2D vect2) {
-		return (produit_vectoriel(vect1, vect2) / (vect1.getNorme() * vect2.getNorme()));
+		return (cross_product(vect1, vect2) / (vect1.getNorm() * vect2.getNorm()));
 	}
 	
 	/** Retourne le vecteur reflechi de vect par la normale */
 	public static Vecteur2D reflect(Vecteur2D vect, Vecteur2D normal) {
-		double dot = Vecteur2D.produit_scalaire(vect, normal);
+		double dot = Vecteur2D.scalar_product(vect, normal);
 		double dx = vect.getDx() - 2 * dot * normal.getDx();
 		double dy = vect.getDy() - 2 * dot * normal.getDy();
 		return new Vecteur2D(dx, dy);

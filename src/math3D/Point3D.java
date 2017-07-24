@@ -51,16 +51,21 @@ public class Point3D {
 		this.y = y;
 	}
 	
-	/** Set les composantes du point */
+	/** Set la composante z du point */
+	public void setZ(double z) {
+		this.z = z;
+	}
+	
+	/** Set les 3 composantes du point */
 	public void set(double x, double y, double z) {
 		setX(x);
 		setY(y);
 		setZ(z);
 	}
 	
-	/** Set la composante z du point */
-	public void setZ(double z) {
-		this.z = z;
+	/** Set les 3 composantes du point */
+	public void set(Point3D p) {
+		set(p.getX(), p.getY(), p.getZ());
 	}
 	
 	/** Retourne la distance a l'origine */
@@ -69,19 +74,20 @@ public class Point3D {
 	}
 	
 	/** Translate le point */
-	public void translation(double dx, double dy, double dz) {
+	public Point3D translation(double dx, double dy, double dz) {
 		setX(getX() + dx);
 		setY(getY() + dy);
 		setZ(getZ() + dz);
+		return this;
 	}
 	
 	/** Translate le point */
-	public void translation(Vecteur3D t) {
-		translation(t.getDx(), t.getDy(), t.getDz());
+	public Point3D translation(Vecteur3D vect) {
+		return translation(vect.getDx(), vect.getDy(), vect.getDz());
 	}
 	
 	/** Rotation du point autour d'un axe (dx, dy, dz) avec un angle donne en radian */
-	public void rotation(double dx, double dy, double dz, double radian) {
+	public Point3D rotation(double dx, double dy, double dz, double radian) {
 		double x = getX();
 		double y = getY();
 		double z = getZ();
@@ -96,15 +102,16 @@ public class Point3D {
 		setZ(   x * (dx*dz * (1 - cos) - dy*sin) +
 				y * (dy*dz * (1 - cos) + dx*sin) +
 				z * (Math.pow(dz, 2) + (1 - Math.pow(dz, 2)) * cos) );
+		return this;
 	}
 	
 	/** Rotation du point autour d'un axe avec un angle donne en radian */
-	public void rotation(Vecteur3D axis, double radian) {
-		Vecteur3D unit = axis.getVecteurUnitaire();
+	public Point3D rotation(Vecteur3D axis, double radian) {
+		Vecteur3D unit = axis.getUnitVector();
 		double dx = unit.getDx();
 		double dy = unit.getDy();
 		double dz = unit.getDz();
-		rotation(dx, dy, dz, radian);
+		return rotation(dx, dy, dz, radian);
 	}
 	
 	/** Retourne la distance entre les deux points */
@@ -120,6 +127,6 @@ public class Point3D {
 	/** Retourne la distance entre deux points */
 	public static double distance(Point3D p1, Point3D p2) {
 		Vecteur3D vect = new Vecteur3D(p1, p2);
-		return vect.getNorme();
+		return vect.getNorm();
 	}
 }
