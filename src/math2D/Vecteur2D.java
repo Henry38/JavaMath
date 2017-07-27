@@ -82,12 +82,10 @@ public class Vecteur2D {
 	}
 	
 	/** Retourne la projection du vecteur passe en parametre sur le vecteur courant */
-	public Vecteur2D getProjected(Vecteur2D vect) {
-		double norm = (Vecteur2D.scalar_product(this, vect)) / Math.pow(vect.getNorm(), 2);
-		double dx, dy;
-		dx = getDx() * norm;
-		dy = getDy() * norm;
-		return new Vecteur2D(dx, dy);
+	public Vecteur2D getProjectedOn(Vecteur2D vect) {
+		Vecteur2D proj = new Vecteur2D(this);
+		proj.projectOn(vect);
+		return proj;
 	}
 	
 	/** Normalise le vecteur */
@@ -101,6 +99,13 @@ public class Vecteur2D {
 	public void inverse() {
 		setDx(-getDx());
 		setDy(-getDy());
+	}
+	
+	/** Projete le vecteur courant sur le vecteur passe en parametre */
+	public void projectOn(Vecteur2D vect) {
+		double norm = (Vecteur2D.scalar_product(this, vect)) / Math.pow(vect.getNorm(), 2);
+		setDx(vect.getDx() * norm);
+		setDy(vect.getDy() * norm);
 	}
 	
 	/** Ajoute le vecteur passe en parametre */

@@ -95,13 +95,10 @@ public class Vecteur3D {
 	}
 	
 	/** Retourne la projection du vecteur passe en parametre sur le vecteur courant */
-	public Vecteur3D getProjected(Vecteur3D vect) {
-		double norm = (Vecteur3D.scalar_product(this, vect)) / Math.pow(vect.getNorm(), 2);
-		double dx, dy, dz;
-		dx = getDx() * norm;
-		dy = getDy() * norm;
-		dz = getDz() * norm;
-		return new Vecteur3D(dx, dy, dz);
+	public Vecteur3D getProjectedOn(Vecteur3D vect) {
+		Vecteur3D proj = new Vecteur3D(this);
+		proj.projectOn(vect);
+		return proj;
 	}
 	
 	/** Normalise le vecteur */
@@ -117,6 +114,14 @@ public class Vecteur3D {
 		setDx(-getDx());
 		setDy(-getDy());
 		setDz(-getDz());
+	}
+	
+	/** Projete le vecteur courant sur le vecteur passe en parametre */
+	public void projectOn(Vecteur3D vect) {
+		double norm = (Vecteur3D.scalar_product(this, vect)) / Math.pow(vect.getNorm(), 2);
+		setDx(vect.getDx() * norm);
+		setDy(vect.getDy() * norm);
+		setDz(vect.getDz() * norm);
 	}
 	
 	/** Ajoute le vecteur passe en parametre */
