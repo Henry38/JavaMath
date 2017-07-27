@@ -1,5 +1,6 @@
 package math4D;
 
+import math3D.Point3D;
 import math3D.Vecteur3D;
 import utils.Tools;
 
@@ -30,6 +31,11 @@ public class Quaternion {
 			this.real = half_cos;
 			this.imag = new Vecteur3D(ux*half_sin, uy*half_sin, uz*half_sin);
 		}
+	}
+	
+	/** Constructeur */
+	public Quaternion(Vecteur3D vect) {
+		this(0, vect.getDx(), vect.getDy(), vect.getDz());
 	}
 	
 	/** Constructeur */
@@ -142,6 +148,28 @@ public class Quaternion {
 		setReal( (real * qreal) - Vecteur3D.scalar_product(imag, qimag) );
 		setImag( qimag.multiply(real).add(imag.multiply(qreal)).add(cross) );
 		return this;
+	}
+	
+	/** Applique la rotation au vecteur passe en parametre */
+	public Vecteur3D multiply(Vecteur3D vect) {
+		Quaternion q = new Quaternion(this);
+		q.normalize();
+		Quaternion v = new Quaternion(vect);
+		Quaternion conjugate = q.getConjugate();
+		Quaternion rotated = q.multiply(v).multiply(conjugate);
+		return rotated.getImag();
+	}
+	
+	/** Applique la rotation au vecteur passe en parametre */
+	public Point3D multiply(Point3D p) {
+		Vecteur3D rotated = multiply(new Vecteur3D(p));
+		return new Point3D(rotated.getDx(), rotated.getDy(), rotated.getDz());
+	}
+	
+	/** Representation textuelle d'un Quaternion */
+	public String toString() {
+		Vecteur3D vect = getImag();
+		return "(" + ((int)(getReal()*100))/100.0 + " , " + ((int)(vect.getDx()*100))/100.0 + " , " + ((int)(vect.getDy()*100))/100.0 + " , " + ((int)(vect.getDz()*100))/100.0 + ")";
 	}
 	
 //	public static Quaternion fromEulerAngle(double heading, double attitude, double bank) {
