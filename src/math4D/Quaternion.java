@@ -111,20 +111,25 @@ public class Quaternion {
 	public void normalize() {
 		double norm = getNorm();
 		setReal(getReal() / norm);
-		this.imag.divide(norm);
+		getImag().divide(norm);
 	}
 	
 	/** Inverse le quaternion */
 	public void inverse() {
 		double norm = getNorm();
-		Math.pow(norm, 2)
 		conjugate();
-		//this.imag.opposite();
+		divide(norm);
 	}
 	
 	/** Conjugue le quaternion */
 	public void conjugate() {
-		this.imag.opposite();
+		getImag().opposite();
+	}
+	
+	public Quaternion add(Quaternion q) {
+		setReal(getReal() + q.getReal());
+		getImag().add(q.getImag());
+		return this;
 	}
 	
 	/** Calcul le produit de deux quaternion */
