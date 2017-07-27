@@ -194,7 +194,7 @@ public class Vecteur3D {
 		return rotation(ux, uy, uz, radian);
 	}
 	
-	/** Representation textuelle d'un Vecteur2D */
+	/** Representation textuelle d'un Vecteur3D */
 	public String toString() {
 		return "(" + ((int)(getDx()*100))/100.0 + " , " + ((int)(getDy()*100))/100.0 + " , " + ((int)(getDz()*100))/100.0 + ")";
 	}
