@@ -146,7 +146,7 @@ public class Vecteur3D {
 	}
 	
 	/** Soustrait le vecteur passe en parametre */
-	public Vecteur3D remove(Vecteur3D vect) {
+	public Vecteur3D subsract(Vecteur3D vect) {
 		return subsract(vect.getDx(), vect.getDy(), vect.getDz());
 	}
 	
