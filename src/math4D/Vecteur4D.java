@@ -149,6 +149,6 @@ public class Vecteur4D {
 	
 	/** Representation textuelle d'un Vecteur2D */
 	public String toString() {
-		return "(" + ((int)(getDx()*100))/100.0 + " , " + ((int)(getDy()*100))/100.0 + ((int)(getDz()*100))/100.0 + ((int)(getDw()*100))/100.0 + ")";
+		return "(" + ((int)(getDx()*100))/100.0 + " , " + ((int)(getDy()*100))/100.0 + " , " + ((int)(getDz()*100))/100.0 + " , " + ((int)(getDw()*100))/100.0 + ")";
 	}
 }
