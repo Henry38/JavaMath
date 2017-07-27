@@ -88,9 +88,9 @@ public class Vecteur3D {
 	}
 	
 	/** Retourne l'oppose du vecteur */
-	public Vecteur3D getInverse() {
+	public Vecteur3D getOpposite() {
 		Vecteur3D vect = new Vecteur3D(this);
-		vect.inverse();
+		vect.opposite();
 		return vect;
 	}
 	
@@ -109,8 +109,8 @@ public class Vecteur3D {
 		setDz(getDz() / norm);
 	}
 	
-	/** Inverse le vecteur */
-	public void inverse() {
+	/** Inverse le vecteur de sens */
+	public void opposite() {
 		setDx(-getDx());
 		setDy(-getDy());
 		setDz(-getDz());

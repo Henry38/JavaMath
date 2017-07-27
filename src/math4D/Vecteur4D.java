@@ -101,9 +101,9 @@ public class Vecteur4D {
 	}
 	
 	/** Retourne l'oppose du vecteur */
-	public Vecteur4D getInverse() {
+	public Vecteur4D getOpposite() {
 		Vecteur4D vect = new Vecteur4D(this);
-		vect.inverse();
+		vect.opposite();
 		return vect;
 	}
 	
@@ -124,7 +124,7 @@ public class Vecteur4D {
 	}
 	
 	/** Inverse le vecteur */
-	public void inverse() {
+	public void opposite() {
 		setDx(-getDx());
 		setDy(-getDy());
 		setDz(-getDz());

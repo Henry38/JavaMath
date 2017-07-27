@@ -75,9 +75,9 @@ public class Vecteur2D {
 	}
 	
 	/** Retourne l'oppose du vecteur */
-	public Vecteur2D getInverse() {
+	public Vecteur2D getOpposite() {
 		Vecteur2D vect = new Vecteur2D(this);
-		vect.inverse();
+		vect.opposite();
 		return vect;
 	}
 	
@@ -95,8 +95,8 @@ public class Vecteur2D {
 		setDy(getDy() / norm);
 	}
 	
-	/** Inverse le vecteur */
-	public void inverse() {
+	/** Inverse le vecteur de sens */
+	public void opposite() {
 		setDx(-getDx());
 		setDy(-getDy());
 	}
