@@ -176,10 +176,10 @@ public class Vecteur4D {
 	
 	/** Divise par le coefficent passe en parametre */
 	public void divide(double k) {
-		setDx(k / getDx());
-		setDy(k / getDy());
-		setDz(k / getDz());
-		setDw(k / getDw());
+		setDx(getDx() / k);
+		setDy(getDy() / k);
+		setDz(getDz() / k);
+		setDw(getDw() / k);
 	}
 	
 	/** Representation textuelle d'un Vecteur2D */

@@ -160,9 +160,9 @@ public class Vecteur3D {
 	
 	/** Divise par le coefficent passe en parametre */
 	public Vecteur3D divide(double k) {
-		setDx(k / getDx());
-		setDy(k / getDy());
-		setDz(k / getDz());
+		setDx(getDx() / k);
+		setDy(getDy() / k);
+		setDz(getDz() / k);
 		return this;
 	}
 	

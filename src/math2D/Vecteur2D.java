@@ -141,8 +141,8 @@ public class Vecteur2D {
 	
 	/** Divise par le coefficent passe en parametre */
 	public Vecteur2D divide(double k) {
-		setDx(k / getDx());
-		setDy(k / getDy());
+		setDx(getDx() / k);
+		setDy(getDy() / k);
 		return this;
 	}
 	
