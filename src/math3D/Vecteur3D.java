@@ -138,7 +138,7 @@ public class Vecteur3D {
 	}
 	
 	/** Soustrait le vecteur passe en parametre */
-	public Vecteur3D remove(double dx, double dy, double dz) {
+	public Vecteur3D subsract(double dx, double dy, double dz) {
 		setDx(getDx() - dx);
 		setDy(getDy() - dy);
 		setDz(getDz() - dz);
@@ -147,11 +147,11 @@ public class Vecteur3D {
 	
 	/** Soustrait le vecteur passe en parametre */
 	public Vecteur3D remove(Vecteur3D vect) {
-		return remove(vect.getDx(), vect.getDy(), vect.getDz());
+		return subsract(vect.getDx(), vect.getDy(), vect.getDz());
 	}
 	
 	/** Multiplie par le coefficent passe en parametre */
-	public Vecteur3D mult(double k) {
+	public Vecteur3D multiply(double k) {
 		setDx(k * getDx());
 		setDy(k * getDy());
 		setDz(k * getDz());

@@ -121,19 +121,19 @@ public class Vecteur2D {
 	}
 	
 	/** Soustrait le vecteur passe en parametre */
-	public Vecteur2D remove(double dx, double dy) {
+	public Vecteur2D subsract(double dx, double dy) {
 		setDx(getDx() - dx);
 		setDy(getDy() - dy);
 		return this;
 	}
 	
 	/** Soustrait le vecteur passe en parametre */
-	public Vecteur2D remove(Vecteur2D vect) {
-		return remove(vect.getDx(), vect.getDy());
+	public Vecteur2D subsract(Vecteur2D vect) {
+		return subsract(vect.getDx(), vect.getDy());
 	}
 	
 	/** Multiplie par le coefficent passe en parametre */
-	public Vecteur2D mult(double k) {
+	public Vecteur2D multiply(double k) {
 		setDx(k * getDx());
 		setDy(k * getDy());
 		return this;
