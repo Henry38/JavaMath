@@ -118,7 +118,8 @@ public class Quaternion {
 	public void inverse() {
 		double norm = getNorm();
 		conjugate();
-		divide(norm);
+		setReal(getReal() / norm);
+		getImag().divide(norm);
 	}
 	
 	/** Conjugue le quaternion */
@@ -126,6 +127,7 @@ public class Quaternion {
 		getImag().opposite();
 	}
 	
+	/** Ajoute le quaternion passe en parametre */
 	public Quaternion add(Quaternion q) {
 		setReal(getReal() + q.getReal());
 		getImag().add(q.getImag());
@@ -147,20 +149,6 @@ public class Quaternion {
 		Vecteur3D cross = Vecteur3D.cross_product(imag, qimag);
 		setReal( (real * qreal) - Vecteur3D.scalar_product(imag, qimag) );
 		setImag( qimag.multiply(real).add(imag.multiply(qreal)).add(cross) );
-		return this;
-	}
-	
-	/** Multiplie le quaternion par le scalaire k */
-	public Quaternion multiply(double k) {
-		setReal(k * getReal());
-		this.imag.multiply(k);
-		return this;
-	}
-	
-	/** Divise le quaternion par le scalaire k */
-	public Quaternion divide(double k) {
-		setReal(getReal() / k);
-		this.imag.divide(k);
 		return this;
 	}
 	
