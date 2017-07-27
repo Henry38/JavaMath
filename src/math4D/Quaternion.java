@@ -14,14 +14,6 @@ public class Quaternion {
 		this.imag = new Vecteur3D(q2, q3, q4);
 	}
 	
-//	/** Constructeur */
-//	public Quaternion(double ux, double uy, double uz, double radian) {
-//		double half_cos = Math.cos(radian / 2.0);
-//		double half_sin = Math.sin(radian / 2.0);
-//		this.real = half_cos;
-//		this.imag = new Vecteur3D(ux*half_sin, uy*half_sin, uz*half_sin);
-//	}
-	
 	/** Constructeur */
 	public Quaternion(Vecteur3D axis, double radian) {
 		double half_cos = Math.cos(radian / 2.0);
@@ -42,7 +34,7 @@ public class Quaternion {
 	
 	/** Constructeur */
 	public Quaternion() {
-		this(0,0,0,1);
+		this(1,0,0,0);
 	}
 	
 	/** TODO 
