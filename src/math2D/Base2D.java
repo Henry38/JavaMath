@@ -60,12 +60,12 @@ public class Base2D {
 	
 	/** Change l'echelle en Ox */
 	public void scaleX(double sx) {
-		ox.mult(sx);
+		ox.multiply(sx);
 	}
 	
 	/** Change l'echelle en Oy */
 	public void scaleY(double sy) {
-		oy.mult(sy);
+		oy.multiply(sy);
 	}
 	
 	/** Change l'echelle sur les axes du repere */

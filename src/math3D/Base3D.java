@@ -81,17 +81,17 @@ public class Base3D {
 	
 	/** Change l'echelle en Ox */
 	public void scaleX(double sx) {
-		ox.mult(sx);
+		ox.multiply(sx);
 	}
 	
 	/** Change l'echelle en Oy */
 	public void scaleY(double sy) {
-		oy.mult(sy);
+		oy.multiply(sy);
 	}
 	
 	/** Change l'echelle en Oz */
 	public void scaleZ(double sz) {
-		oz.mult(sz);
+		oz.multiply(sz);
 	}
 	
 	/** Change l'echelle sur les trois axes */
