@@ -135,7 +135,7 @@ public class Vecteur4D {
 	}
 	
 	/** Soustrait le vecteur passe en parametre */
-	public void remove(Vecteur4D vect) {
+	public void subsract(Vecteur4D vect) {
 		subsract(getDx(), vect.getDy(), vect.getDz(), vect.getDw());
 	}
 	
@@ -145,6 +145,14 @@ public class Vecteur4D {
 		setDy(k * getDy());
 		setDz(k * getDz());
 		setDw(k * getDw());
+	}
+	
+	/** Divise par le coefficent passe en parametre */
+	public void divide(double k) {
+		setDx(k / getDx());
+		setDy(k / getDy());
+		setDz(k / getDz());
+		setDw(k / getDw());
 	}
 	
 	/** Representation textuelle d'un Vecteur2D */

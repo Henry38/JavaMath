@@ -139,6 +139,13 @@ public class Vecteur2D {
 		return this;
 	}
 	
+	/** Divise par le coefficent passe en parametre */
+	public Vecteur2D divide(double k) {
+		setDx(k / getDx());
+		setDy(k / getDy());
+		return this;
+	}
+	
 	/** Rotation dans le sens trigonometrique avec un angle donne en radian */
 	public Vecteur2D rotation(double radian) {
 		double x = getDx();

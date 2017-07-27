@@ -158,6 +158,14 @@ public class Vecteur3D {
 		return this;
 	}
 	
+	/** Divise par le coefficent passe en parametre */
+	public Vecteur3D divide(double k) {
+		setDx(k / getDx());
+		setDy(k / getDy());
+		setDz(k / getDz());
+		return this;
+	}
+	
 	/** Rotation du vecteur autour d'un axe unitaire (ux, uy, uz) avec un angle donne en radian */
 	public Vecteur3D rotation(double ux, double uy, double uz, double radian) {
 		double x = getDx();
