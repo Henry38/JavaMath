@@ -101,6 +101,15 @@ public class Point2D {
 		setY(sy * getY());
 		return this;
 	}
+	/** Homothetie du point par rapport au point p */
+	public Point2D scale(Point2D p, double sx, double sy) {
+		double tx = p.getX();
+		double ty = p.getY();
+		translation(-tx, -ty);
+		scale(sx, sy);
+		translation(tx, ty);
+		return this;
+	}
 	
 	/** Retourne la distance entre les deux points */
 	public double distance(Point2D p) {

@@ -114,6 +114,24 @@ public class Point3D {
 		return rotation(dx, dy, dz, radian);
 	}
 	
+	/** Homothetie du point par rapport a l'origine */
+	public Point3D scale(double sx, double sy, double sz) {
+		setX(sx * getX());
+		setY(sy * getY());
+		setZ(sz * getZ());
+		return this;
+	}
+	/** Homothetie du point par rapport au point p */
+	public Point3D scale(Point3D p, double sx, double sy, double sz) {
+		double tx = p.getX();
+		double ty = p.getY();
+		double tz = p.getZ();
+		translation(-tx, -ty, -tz);
+		scale(sx, sy, sz);
+		translation(tx, ty, tz);
+		return this;
+	}
+	
 	/** Retourne la distance entre les deux points */
 	public double distance(Point3D p) {
 		return Point3D.distance(this, p);
