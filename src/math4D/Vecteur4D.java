@@ -94,23 +94,50 @@ public class Vecteur4D {
 	}
 	
 	/** Retourne le vecteur unitaire */
-	public Vecteur4D getVecteurUnitaire() {
-		double norm = getNorm();
-		double dx, dy, dz, dw;
-		dx = getDx() / norm;
-		dy = getDy() / norm;
-		dz = getDz() / norm;
-		dw = getDw() / norm;
-		return new Vecteur4D(dx, dy, dz, dw);
+	public Vecteur4D getUnitVector() {
+		Vecteur4D vect = new Vecteur4D(this);
+		vect.normalize();
+		return vect;
+	}
+	
+	/** Retourne l'oppose du vecteur */
+	public Vecteur4D getInverse() {
+		Vecteur4D vect = new Vecteur4D(this);
+		vect.inverse();
+		return vect;
+	}
+	
+	/** Retourne la projection du vecteur passe en parametre sur le vecteur courant */
+	public Vecteur4D getProjectedOn(Vecteur4D vect) {
+		Vecteur4D proj = new Vecteur4D(this);
+		proj.projectOn(vect);
+		return proj;
 	}
 	
 	/** Normalise le vecteur */
-	public void normalized() {
+	public void normalize() {
 		double norm = getNorm();
 		setDx(getDx() / norm);
 		setDy(getDy() / norm);
 		setDz(getDz() / norm);
 		setDw(getDw() / norm);
+	}
+	
+	/** Inverse le vecteur */
+	public void inverse() {
+		setDx(-getDx());
+		setDy(-getDy());
+		setDz(-getDz());
+		setDw(-getDw());
+	}
+	
+	/** Projete le vecteur courant sur le vecteur passe en parametre */
+	public void projectOn(Vecteur4D vect) {
+		double norm = (Vecteur4D.scalar_product(this, vect)) / Math.pow(vect.getNorm(), 2);
+		setDx(vect.getDx() * norm);
+		setDy(vect.getDy() * norm);
+		setDz(vect.getDz() * norm);
+		setDw(vect.getDw() * norm);
 	}
 	
 	/** Ajoute le vecteur passe en parametre */
@@ -158,5 +185,10 @@ public class Vecteur4D {
 	/** Representation textuelle d'un Vecteur2D */
 	public String toString() {
 		return "(" + ((int)(getDx()*100))/100.0 + " , " + ((int)(getDy()*100))/100.0 + " , " + ((int)(getDz()*100))/100.0 + " , " + ((int)(getDw()*100))/100.0 + ")";
+	}
+	
+	/** Retourne le produit scalaire de deux vecteurs */
+	public static double scalar_product(Vecteur4D vect1, Vecteur4D vect2) {
+		return (vect1.getDx() * vect2.getDx() + vect1.getDy() * vect2.getDy() + vect1.getDz() * vect2.getDz() + vect1.getDw() * vect2.getDw());
 	}
 }
