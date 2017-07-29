@@ -13,8 +13,13 @@ public class Point4D {
 	}
 	
 	/** Constructeur par copie */
-	public Point4D(Point4D point) {
-		this(point.getX(), point.getY(), point.getZ(), point.getW());
+	public Point4D(Point4D p) {
+		this(p.getX(), p.getY(), p.getZ(), p.getW());
+	}
+	
+	/** Constructeur */
+	public Point4D(Vecteur4D vect) {
+		this(vect.getDx(), vect.getDy(), vect.getDz(), vect.getDw());
 	}
 	
 	/** Constructeur par defaut */
@@ -87,11 +92,12 @@ public class Point4D {
 	
 	/** Translate le point */
 	public Point4D translation(double dx, double dy, double dz, double dw) {
-		setX(getX() + dx);
-		setY(getY() + dy);
-		setZ(getZ() + dz);
-		setZ(getW() + dw);
-		return this;
+		Point4D p = new Point4D();
+		p.setX(getX() + dx);
+		p.setY(getY() + dy);
+		p.setZ(getZ() + dz);
+		p.setZ(getW() + dw);
+		return p;
 	}
 	
 	/** Translate le point */

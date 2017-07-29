@@ -16,6 +16,11 @@ public class Point2D {
 		this(point.getX(), point.getY());
 	}
 	
+	/** Constructeur */
+	public Point2D(Vecteur2D vect) {
+		this(vect.getDx(), vect.getDy());
+	}
+	
 	/** Constructeur par defaut */
 	public Point2D() {
 		this(0, 0);
@@ -64,9 +69,10 @@ public class Point2D {
 	
 	/** Translate le point */
 	public Point2D translation(double dx, double dy) {
-		setX(getX() + dx);
-		setY(getY() + dy);
-		return this;
+		Point2D p = new Point2D();
+		p.setX(getX() + dx);
+		p.setY(getY() + dy);
+		return p;
 	}
 	
 	/** Translate le point */
@@ -76,39 +82,22 @@ public class Point2D {
 	
 	/** Rotation autour de l'origine dans le sens trigonometrique avec l'angle donne en radian */
 	public Point2D rotation(double radian) {
+		Point2D p = new Point2D();
 		double x = getX();
 		double y = getY();
 		double cos = Math.cos(radian);
 		double sin = Math.sin(radian);
-		setX((x * cos) - (y * sin));
-		setY((x * sin) + (y * cos));
-		return this;
-	}
-	
-	/** Rotation autour d'un point p dans le sens trigonometrique avec l'angle donne en radian */
-	public Point2D rotation(Point2D p, double radian) {
-		double tx = p.getX();
-		double ty = p.getY();
-		translation(-tx, -ty);
-		rotation(radian);
-		translation(tx, ty);
-		return this;
+		p.setX((x * cos) - (y * sin));
+		p.setY((x * sin) + (y * cos));
+		return p;
 	}
 	
 	/** Homothetie du point par rapport a l'origine */
 	public Point2D scale(double sx, double sy) {
-		setX(sx * getX());
-		setY(sy * getY());
-		return this;
-	}
-	/** Homothetie du point par rapport au point p */
-	public Point2D scale(Point2D p, double sx, double sy) {
-		double tx = p.getX();
-		double ty = p.getY();
-		translation(-tx, -ty);
-		scale(sx, sy);
-		translation(tx, ty);
-		return this;
+		Point2D p = new Point2D();
+		p.setX(sx * getX());
+		p.setY(sy * getY());
+		return p;
 	}
 	
 	/** Retourne la distance entre les deux points */

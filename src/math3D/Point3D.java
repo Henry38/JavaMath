@@ -16,6 +16,11 @@ public class Point3D {
 		this(point.getX(), point.getY(), point.getZ());
 	}
 	
+	/** Constructeur */
+	public Point3D(Vecteur3D point) {
+		this(point.getDx(), point.getDy(), point.getDz());
+	}
+	
 	/** Constructeur par defaut */
 	public Point3D() {
 		this(0, 0, 0);
@@ -75,10 +80,11 @@ public class Point3D {
 	
 	/** Translate le point */
 	public Point3D translation(double dx, double dy, double dz) {
-		setX(getX() + dx);
-		setY(getY() + dy);
-		setZ(getZ() + dz);
-		return this;
+		Point3D p = new Point3D();
+		p.setX(getX() + dx);
+		p.setY(getY() + dy);
+		p.setZ(getZ() + dz);
+		return p;
 	}
 	
 	/** Translate le point */
@@ -86,50 +92,42 @@ public class Point3D {
 		return translation(vect.getDx(), vect.getDy(), vect.getDz());
 	}
 	
-	/** Rotation du point autour d'un axe (dx, dy, dz) avec un angle donne en radian */
-	public Point3D rotation(double dx, double dy, double dz, double radian) {
+	/** Rotation du point autour d'un axe unitaire (ux, uy, uz) avec un angle donne en radian */
+	public Point3D rotation(double ux, double uy, double uz, double radian) {
+		Point3D p = new Point3D();
 		double x = getX();
 		double y = getY();
 		double z = getZ();
 		double cos = Math.cos(radian);
 		double sin = Math.sin(radian);
-		setX(   x * (Math.pow(dx, 2) + (1 - Math.pow(dx, 2)) * cos) +
-				y * (dx*dy * (1 - cos) - dz*sin) +
-				z * (dx*dz * (1 - cos) + dy*sin) );
-		setY(   x * (dx*dy * (1 - cos) + dz*sin) +
-				y * (Math.pow(dy, 2) + (1 - Math.pow(dy, 2)) * cos) +
-				z * (dy*dz * (1 - cos) - dx*sin) );
-		setZ(   x * (dx*dz * (1 - cos) - dy*sin) +
-				y * (dy*dz * (1 - cos) + dx*sin) +
-				z * (Math.pow(dz, 2) + (1 - Math.pow(dz, 2)) * cos) );
-		return this;
+		p.setX(	x * (Math.pow(ux, 2) + (1 - Math.pow(ux, 2)) * cos) +
+				y * (ux*uy * (1 - cos) - uz*sin) +
+				z * (ux*uz * (1 - cos) + uy*sin) );
+		p.setY(	x * (ux*uy * (1 - cos) + uz*sin) +
+				y * (Math.pow(uy, 2) + (1 - Math.pow(uy, 2)) * cos) +
+				z * (uy*uz * (1 - cos) - ux*sin) );
+		p.setZ(	x * (ux*uz * (1 - cos) - uy*sin) +
+				y * (uy*uz * (1 - cos) + ux*sin) +
+				z * (Math.pow(uz, 2) + (1 - Math.pow(uz, 2)) * cos) );
+		return p;
 	}
 	
 	/** Rotation du point autour d'un axe avec un angle donne en radian */
 	public Point3D rotation(Vecteur3D axis, double radian) {
 		Vecteur3D unit = axis.getUnitVector();
-		double dx = unit.getDx();
-		double dy = unit.getDy();
-		double dz = unit.getDz();
-		return rotation(dx, dy, dz, radian);
+		double ux = unit.getDx();
+		double uy = unit.getDy();
+		double uz = unit.getDz();
+		return rotation(ux, uy, uz, radian);
 	}
 	
 	/** Homothetie du point par rapport a l'origine */
 	public Point3D scale(double sx, double sy, double sz) {
-		setX(sx * getX());
-		setY(sy * getY());
-		setZ(sz * getZ());
-		return this;
-	}
-	/** Homothetie du point par rapport au point p */
-	public Point3D scale(Point3D p, double sx, double sy, double sz) {
-		double tx = p.getX();
-		double ty = p.getY();
-		double tz = p.getZ();
-		translation(-tx, -ty, -tz);
-		scale(sx, sy, sz);
-		translation(tx, ty, tz);
-		return this;
+		Point3D p = new Point3D();
+		p.setX(sx * getX());
+		p.setY(sy * getY());
+		p.setZ(sz * getZ());
+		return p;
 	}
 	
 	/** Retourne la distance entre les deux points */

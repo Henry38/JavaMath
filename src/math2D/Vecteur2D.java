@@ -16,19 +16,24 @@ public class Vecteur2D {
 		this(vect.getDx(), vect.getDy());
 	}
 	
-	/** Constructeur du vecteur AB */
-	public Vecteur2D(Point2D a, Point2D b) {
-		this(b.getX() - a.getX(), b.getY() - a.getY());
+	/** Constructeur */
+	public Vecteur2D(Point2D p1, Point2D p2) {
+		this(p2.getX() - p1.getX(), p2.getY() - p1.getY());
 	}
 	
-	/** Constructeur du vecteur OA */
-	public Vecteur2D(Point2D a) {
-		this(a.getX(), a.getY());
+	/** Constructeur */
+	public Vecteur2D(Point2D p) {
+		this(p.getX(), p.getY());
 	}
 	
 	/** Constructeur par defaut */
 	public Vecteur2D() {
 		this(0, 0);
+	}
+	
+	/** Clone et retourne le vecteur */
+	public Vecteur2D clone() {
+		return new Vecteur2D(getDx(), getDy());
 	}
 	
 	/** Retourne la composante x du vecteur */
@@ -110,9 +115,10 @@ public class Vecteur2D {
 	
 	/** Ajoute le vecteur passe en parametre */
 	public Vecteur2D add(double dx, double dy) {
-		setDx(getDx() + dx);
-		setDy(getDy() + dy);
-		return this;
+		Vecteur2D vect = new Vecteur2D(); 
+		vect.setDx(getDx() + dx);
+		vect.setDy(getDy() + dy);
+		return vect;
 	}
 	
 	/** Ajoute le vecteur passe en parametre */
@@ -122,9 +128,10 @@ public class Vecteur2D {
 	
 	/** Soustrait le vecteur passe en parametre */
 	public Vecteur2D subsract(double dx, double dy) {
-		setDx(getDx() - dx);
-		setDy(getDy() - dy);
-		return this;
+		Vecteur2D vect = new Vecteur2D();
+		vect.setDx(getDx() - dx);
+		vect.setDy(getDy() - dy);
+		return vect;
 	}
 	
 	/** Soustrait le vecteur passe en parametre */
@@ -134,27 +141,30 @@ public class Vecteur2D {
 	
 	/** Multiplie par le coefficent passe en parametre */
 	public Vecteur2D multiply(double k) {
-		setDx(k * getDx());
-		setDy(k * getDy());
-		return this;
+		Vecteur2D vect = new Vecteur2D();
+		vect.setDx(k * getDx());
+		vect.setDy(k * getDy());
+		return vect;
 	}
 	
 	/** Divise par le coefficent passe en parametre */
 	public Vecteur2D divide(double k) {
-		setDx(getDx() / k);
-		setDy(getDy() / k);
-		return this;
+		Vecteur2D vect = new Vecteur2D();
+		vect.setDx(getDx() / k);
+		vect.setDy(getDy() / k);
+		return vect;
 	}
 	
 	/** Rotation dans le sens trigonometrique avec un angle donne en radian */
 	public Vecteur2D rotation(double radian) {
+		Vecteur2D vect = new Vecteur2D();
 		double x = getDx();
 		double y = getDy();
 		double cos = Math.cos(radian);
 		double sin = Math.sin(radian);
-		setDx((x * cos) - (y * sin));
-		setDy((x * sin) + (y * cos));
-		return this;
+		vect.setDx((x * cos) - (y * sin));
+		vect.setDy((x * sin) + (y * cos));
+		return vect;
 	}
 	
 	/** Representation textuelle d'un Vecteur2D */

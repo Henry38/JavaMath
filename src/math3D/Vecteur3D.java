@@ -18,14 +18,14 @@ public class Vecteur3D {
 		this(vect.getDx(), vect.getDy(), vect.getDz());
 	}
 	
-	/** Constructeur du vecteur AB */
-	public Vecteur3D(Point3D a, Point3D b) {
-		this(b.getX() - a.getX(), b.getY() - a.getY(), b.getZ() - a.getZ());
+	/** Constructeur */
+	public Vecteur3D(Point3D p1, Point3D p2) {
+		this(p2.getX() - p1.getX(), p2.getY() - p1.getY(), p2.getZ() - p1.getZ());
 	}
 	
-	/** Constructeur du vecteur OA */
-	public Vecteur3D(Point3D a) {
-		this(a.getX(), a.getY(), a.getZ());
+	/** Constructeur */
+	public Vecteur3D(Point3D p) {
+		this(p.getX(), p.getY(), p.getZ());
 	}
 	
 	/** Constructeur par defaut */
@@ -126,10 +126,11 @@ public class Vecteur3D {
 	
 	/** Ajoute le vecteur passe en parametre */
 	public Vecteur3D add(double dx, double dy, double dz) {
-		setDx(getDx() + dx);
-		setDy(getDy() + dy);
-		setDz(getDz() + dz);
-		return this;
+		Vecteur3D vect = new Vecteur3D();
+		vect.setDx(getDx() + dx);
+		vect.setDy(getDy() + dy);
+		vect.setDz(getDz() + dz);
+		return vect;
 	}
 	
 	/** Ajoute le vecteur passe en parametre */
@@ -139,10 +140,11 @@ public class Vecteur3D {
 	
 	/** Soustrait le vecteur passe en parametre */
 	public Vecteur3D subsract(double dx, double dy, double dz) {
-		setDx(getDx() - dx);
-		setDy(getDy() - dy);
-		setDz(getDz() - dz);
-		return this;
+		Vecteur3D vect = new Vecteur3D();
+		vect.setDx(getDx() - dx);
+		vect.setDy(getDy() - dy);
+		vect.setDz(getDz() - dz);
+		return vect;
 	}
 	
 	/** Soustrait le vecteur passe en parametre */
@@ -152,37 +154,40 @@ public class Vecteur3D {
 	
 	/** Multiplie par le coefficent passe en parametre */
 	public Vecteur3D multiply(double k) {
-		setDx(k * getDx());
-		setDy(k * getDy());
-		setDz(k * getDz());
-		return this;
+		Vecteur3D vect = new Vecteur3D();
+		vect.setDx(k * getDx());
+		vect.setDy(k * getDy());
+		vect.setDz(k * getDz());
+		return vect;
 	}
 	
 	/** Divise par le coefficent passe en parametre */
 	public Vecteur3D divide(double k) {
-		setDx(getDx() / k);
-		setDy(getDy() / k);
-		setDz(getDz() / k);
-		return this;
+		Vecteur3D vect = new Vecteur3D();
+		vect.setDx(getDx() / k);
+		vect.setDy(getDy() / k);
+		vect.setDz(getDz() / k);
+		return vect;
 	}
 	
 	/** Rotation du vecteur autour d'un axe unitaire (ux, uy, uz) avec un angle donne en radian */
 	public Vecteur3D rotation(double ux, double uy, double uz, double radian) {
+		Vecteur3D vect = new Vecteur3D();
 		double x = getDx();
 		double y = getDy();
 		double z = getDz();
 		double cos = Math.cos(radian);
 		double sin = Math.sin(radian);
-		setDx(  x * (Math.pow(ux, 2) + (1 - Math.pow(ux, 2)) * cos) +
-				y * (ux*uy * (1 - cos) - uz*sin) +
-				z * (ux*uz * (1 - cos) + uy*sin) );
-		setDy(  x * (ux*uy * (1 - cos) + uz*sin) +
-				y * (Math.pow(uy, 2) + (1 - Math.pow(uy, 2)) * cos) +
-				z * (uy*uz * (1 - cos) - ux*sin) );
-		setDz(  x * (ux*uz * (1 - cos) - uy*sin) +
-				y * (uy*uz * (1 - cos) + ux*sin) +
-				z * (Math.pow(uz, 2) + (1 - Math.pow(uz, 2)) * cos) );
-		return this;
+		vect.setDx(	x * (Math.pow(ux, 2) + (1 - Math.pow(ux, 2)) * cos) +
+					y * (ux*uy * (1 - cos) - uz*sin) +
+					z * (ux*uz * (1 - cos) + uy*sin) );
+		vect.setDy(	x * (ux*uy * (1 - cos) + uz*sin) +
+					y * (Math.pow(uy, 2) + (1 - Math.pow(uy, 2)) * cos) +
+					z * (uy*uz * (1 - cos) - ux*sin) );
+		vect.setDz(	x * (ux*uz * (1 - cos) - uy*sin) +
+					y * (uy*uz * (1 - cos) + ux*sin) +
+					z * (Math.pow(uz, 2) + (1 - Math.pow(uz, 2)) * cos) );
+		return vect;
 	}
 	
 	/** Rotation du vecteur autour d'un axe quelconque avec un angle donne en radian */

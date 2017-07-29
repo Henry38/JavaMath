@@ -20,14 +20,14 @@ public class Vecteur4D {
 		this(vect.getDx(), vect.getDy(), vect.getDz(), vect.getDw());
 	}
 	
-	/** Constructeur du vecteur AB */
-	public Vecteur4D(Point4D a, Point4D b) {
-		this(b.getX() - a.getX(), b.getY() - a.getY(), b.getZ() - a.getZ(), b.getW() - a.getW());
+	/** Constructeur */
+	public Vecteur4D(Point4D p1, Point4D p2) {
+		this(p2.getX() - p1.getX(), p2.getY() - p1.getY(), p2.getZ() - p1.getZ(), p2.getW() - p1.getW());
 	}
 	
-	/** Constructeur du vecteur OA */
-	public Vecteur4D(Point4D a) {
-		this(a.getX(), a.getY(), a.getZ(), a.getW());
+	/** Constructeur */
+	public Vecteur4D(Point4D p) {
+		this(p.getX(), p.getY(), p.getZ(), p.getW());
 	}
 	
 	/** Constructeur par defaut */
@@ -141,45 +141,53 @@ public class Vecteur4D {
 	}
 	
 	/** Ajoute le vecteur passe en parametre */
-	public void add(double dx, double dy, double dz, double dw) {
-		setDx(getDx() + dx);
-		setDy(getDy() + dy);
-		setDz(getDz() + dz);
-		setDz(getDw() + dw);
+	public Vecteur4D add(double dx, double dy, double dz, double dw) {
+		Vecteur4D vect = new Vecteur4D();
+		vect.setDx(getDx() + dx);
+		vect.setDy(getDy() + dy);
+		vect.setDz(getDz() + dz);
+		vect.setDz(getDw() + dw);
+		return vect;
 	}
 	
 	/** Ajoute le vecteur passe en parametre */
-	public void add(Vecteur4D vect) {
-		add(getDx(), vect.getDy(), vect.getDz(), vect.getDw());
+	public Vecteur4D add(Vecteur4D vect) {
+		return add(getDx(), vect.getDy(), vect.getDz(), vect.getDw());
 	}
 	
 	/** Soustrait le vecteur passe en parametre */
-	public void subsract(double dx, double dy, double dz, double dw) {
-		setDx(getDx() - dx);
-		setDy(getDy() - dy);
-		setDz(getDz() - dz);
-		setDz(getDw() - dw);
+	public Vecteur4D subsract(double dx, double dy, double dz, double dw) {
+		Vecteur4D vect = new Vecteur4D();
+		vect.setDx(getDx() - dx);
+		vect.setDy(getDy() - dy);
+		vect.setDz(getDz() - dz);
+		vect.setDz(getDw() - dw);
+		return vect;
 	}
 	
 	/** Soustrait le vecteur passe en parametre */
-	public void subsract(Vecteur4D vect) {
-		subsract(getDx(), vect.getDy(), vect.getDz(), vect.getDw());
+	public Vecteur4D subsract(Vecteur4D vect) {
+		return subsract(getDx(), vect.getDy(), vect.getDz(), vect.getDw());
 	}
 	
 	/** Multiplie par le coefficent passe en parametre */
-	public void multiply(double k) {
-		setDx(k * getDx());
-		setDy(k * getDy());
-		setDz(k * getDz());
-		setDw(k * getDw());
+	public Vecteur4D multiply(double k) {
+		Vecteur4D vect = new Vecteur4D();
+		vect.setDx(k * getDx());
+		vect.setDy(k * getDy());
+		vect.setDz(k * getDz());
+		vect.setDw(k * getDw());
+		return vect;
 	}
 	
 	/** Divise par le coefficent passe en parametre */
-	public void divide(double k) {
-		setDx(getDx() / k);
-		setDy(getDy() / k);
-		setDz(getDz() / k);
-		setDw(getDw() / k);
+	public Vecteur4D divide(double k) {
+		Vecteur4D vect = new Vecteur4D();
+		vect.setDx(getDx() / k);
+		vect.setDy(getDy() / k);
+		vect.setDz(getDz() / k);
+		vect.setDw(getDw() / k);
+		return vect;
 	}
 	
 	/** Representation textuelle d'un Vecteur2D */
