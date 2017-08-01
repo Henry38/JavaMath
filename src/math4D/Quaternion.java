@@ -176,8 +176,30 @@ public class Quaternion {
 		return "(" + ((int)(getReal()*100))/100.0 + " , " + ((int)(vect.getDx()*100))/100.0 + " , " + ((int)(vect.getDy()*100))/100.0 + " , " + ((int)(vect.getDz()*100))/100.0 + ")";
 	}
 	
-//	public static Quaternion fromEulerAngle(double heading, double attitude, double bank) {
-//		
-//		return null;
-//	}
+	public Matrix4D toMatrix() {
+		double a = getReal();
+		double b = imag.getDx();
+		double c = imag.getDy();
+		double d = imag.getDz();
+//		{
+//			{ a, -b, -c, -d},
+//			{ b,  a, -d,  c},
+//			{ c,  d,  a, -b},
+//			{ d, -c,  b,  a}
+//		};
+		Matrix4D m = new Matrix4D();
+		m.set(0, 0,  a); m.set(0, 1, -b); m.set(0, 2, -c); m.set(0, 3, -d);
+		m.set(1, 0,  b); m.set(1, 1,  a); m.set(1, 2, -d); m.set(1, 3,  c);
+		m.set(2, 0,  c); m.set(2, 1,  d); m.set(2, 2,  a); m.set(2, 3, -b);
+		m.set(3, 0,  d); m.set(3, 1, -c); m.set(3, 2,  b); m.set(3, 3,  a);
+		return m;
+	}
+	
+	public static Quaternion fromEulerAngle(double heading, double attitude, double bank) {
+		double PI2 = 2 * Math.PI;
+		heading = heading % PI2;
+		attitude = attitude % PI2;
+		bank = bank % PI2;
+		return null;
+	}
 }
