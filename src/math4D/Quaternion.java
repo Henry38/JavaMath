@@ -127,36 +127,40 @@ public class Quaternion {
 	
 	/** Ajoute le quaternion passe en parametre */
 	public Quaternion add(Quaternion q) {
-		setReal(getReal() + q.getReal());
-		getImag().add(q.getImag());
-		return this;
+		Quaternion quat = new Quaternion();
+		quat.setReal(getReal() + q.getReal());
+		quat.setImag(getImag().add(q.getImag()));
+		return quat;
 	}
 	
 	/** Calcul le produit de deux quaternion */
 	public Quaternion multiply(Quaternion q) {
-		double real = getReal();
-		double qreal = q.getReal();
 		Vecteur3D imag = new Vecteur3D(getImag());
-//		double imag1 = imag.getDx();
-//		double imag2 = imag.getDy();
-//		double imag3 = imag.getDz();
 		Vecteur3D qimag = new Vecteur3D(q.getImag());
-//		double qimag1 = qimag.getDx();
-//		double qimag2 = qimag.getDy();
-//		double qimag3 = qimag.getDz();
-		Vecteur3D cross = Vecteur3D.cross_product(imag, qimag);
-		setReal( (real * qreal) - Vecteur3D.scalar_product(imag, qimag) );
-		setImag( qimag.multiply(real).add(imag.multiply(qreal)).add(cross) );
-		return this;
+		
+		double a1 = getReal();
+		double b1 = imag.getDx();
+		double c1 = imag.getDy();
+		double d1 = imag.getDz();
+		double a2 = q.getReal();
+		double b2 = qimag.getDx();
+		double c2 = qimag.getDy();
+		double d2 = qimag.getDz();
+		
+		double q1 = a1*a2 - b1*b2 - c1*c2 - d1*d2;
+		double q2 = a1*b2 + b1*a2 + c1*d2 - d1*c2;
+		double q3 = a1*c2 + c1*a2 + d1*b2 - b1*d2;
+		double q4 = a1*d2 + d1*a2 + b1*c2 - c1*b2;
+		
+		return new Quaternion(q1, q2, q3, q4);
 	}
 	
 	/** Applique la rotation au vecteur passe en parametre */
 	public Vecteur3D multiply(Vecteur3D vect) {
-		Quaternion q = new Quaternion(this);
-		q.normalize();
 		Quaternion v = new Quaternion(vect);
-		Quaternion conjugate = q.getConjugate();
-		Quaternion rotated = q.multiply(v).multiply(conjugate);
+		Quaternion quat = getUnitQuaternion();
+		Quaternion conjugate = quat.getConjugate();
+		Quaternion rotated = quat.multiply(v).multiply(conjugate);
 		return rotated.getImag();
 	}
 	
