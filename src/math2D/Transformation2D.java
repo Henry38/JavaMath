@@ -24,7 +24,7 @@ public class Transformation2D {
 	public static class Identity extends Transformation2D {
 		
 		/** Constructeur */
-		public Identity(double dx, double dy) {
+		public Identity() {
 			super();
 		}
 	}
