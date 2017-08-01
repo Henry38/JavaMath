@@ -27,7 +27,7 @@ public class Point2D {
 	}
 	
 	/** Clone et retourne le point */
-	public Point2D clone() {
+	public Object clone() {
 		return new Point2D(getX(), getY());
 	}
 	

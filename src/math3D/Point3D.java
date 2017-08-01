@@ -27,7 +27,7 @@ public class Point3D {
 	}
 	
 	/** Clone et retourne le point */
-	public Point3D clone() {
+	public Object clone() {
 		return new Point3D(getX(), getY(), getZ());
 	}
 	

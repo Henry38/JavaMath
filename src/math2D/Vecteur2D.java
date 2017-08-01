@@ -32,7 +32,7 @@ public class Vecteur2D {
 	}
 	
 	/** Clone et retourne le vecteur */
-	public Vecteur2D clone() {
+	public Object clone() {
 		return new Vecteur2D(getDx(), getDy());
 	}
 	

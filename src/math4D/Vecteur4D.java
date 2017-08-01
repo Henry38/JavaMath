@@ -35,6 +35,11 @@ public class Vecteur4D {
 		this(0, 0, 0, 0);
 	}
 	
+	/** Clone et retourne le vecteur */
+	public Object clone() {
+		return new Vecteur4D(getDx(), getDy(), getDz(), getDw());
+	}
+	
 	/** Retourne la composante x du vecteur */
 	public double getDx() {
 		return dist_x;
