@@ -103,24 +103,25 @@ public class Matrix4D {
 	
 	/** Representrion textuelle d'une matrice */
 	public String toString() {
-		String s = "[";
+		String s = "";
 		for (int i = 0 ; i < 4; i++) {
-			if (i > 0) {
-				s += " ";
-			}
 			s += "[";
 			for (int j = 0 ; j < 4; j++) {
-				s += Math.round(1000*get(i, j))/1000.0 + " ";
-				if (j < 3) {
-					s += ",";
+				double rounded = Math.round(100 * get(i, j)) / 100.0;
+				String digit = String.valueOf(rounded);
+				if (rounded >= 0) {
+					digit = " " + digit;
 				}
+				if (j < 3) {
+					digit += ", ";
+				}
+				s += digit;
 			}
 			s += "]";
 			if (i < 3) {
 				s += "\n";
 			}
 		}
-		s += "]";
 		return s;
 	}
 }
