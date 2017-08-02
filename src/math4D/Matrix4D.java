@@ -9,10 +9,10 @@ public class Matrix4D {
 	/** Constructeur */
 	public Matrix4D() {
 		this.matrix = new double[][] {
-				{1, 0, 0, 0},
-				{0, 1, 0, 0},
-				{0, 0, 1, 0},
-				{0, 0, 0, 1}
+				{0, 0, 0, 0},
+				{0, 0, 0, 0},
+				{0, 0, 0, 0},
+				{0, 0, 0, 0}
 		};
 	}
 	
@@ -78,18 +78,17 @@ public class Matrix4D {
 	
 	/** Retourne la multiplication matricielle par la matrice matrix */
 	public Matrix4D mult(Matrix4D matrix) {
-		Matrix4D res = new Matrix4D();
-		double d;
+		Matrix4D m = new Matrix4D();
 		for (int i = 0; i < 4; i++) {
 			for (int j = 0; j < 4; j++) {
-				d = 0;
+				double d = 0;
 				for (int k = 0; k < 4; k++) {
 					d += get(i, k) * matrix.get(k, j);
 				}
-				res.set(i, j, d);
+				m.set(i, j, d);
 			}
 		}
-		return res;
+		return m;
 	}
 	
 	/** Retourne la multiplication matricielle par le vecteur vect */
@@ -123,5 +122,17 @@ public class Matrix4D {
 			}
 		}
 		return s;
+	}
+	
+	public static class Identity extends Matrix4D {
+		
+		/** Constructeur */
+		public Identity() {
+			super();
+			set(0, 0, 1);
+			set(1, 1, 1);
+			set(2, 2, 1);
+			set(3, 3, 1);
+		}
 	}
 }

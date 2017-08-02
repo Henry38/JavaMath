@@ -7,8 +7,8 @@ public class Matrix2D {
 	/** Constructeur */
 	public Matrix2D() {
 		this.matrix = new double[][] {
-				{1, 0},
-				{0, 1}
+				{0, 0},
+				{0, 0}
 		};
 	}
 	
@@ -49,23 +49,22 @@ public class Matrix2D {
 	}
 	
 	/** Retourne la multiplication matricielle par la matrice matrix */
-	public Matrix2D mult(Matrix2D matrix) {
-		Matrix2D res = new Matrix2D();
-		double d;
+	public Matrix2D multiply(Matrix2D matrix) {
+		Matrix2D m = new Matrix2D();
 		for (int i = 0; i < 2; i++) {
 			for (int j = 0; j < 2; j++) {
-				d = 0;
+				double d = 0;
 				for (int k = 0; k < 2; k++) {
 					d += get(i, k) * matrix.get(k, j);
 				}
-				res.set(i, j, d);
+				m.set(i, j, d);
 			}
 		}
-		return res;
+		return m;
 	}
 	
 	/** Retourne la multiplication matricielle par le vecteur vect */
-	public Vecteur2D mult(Vecteur2D vect) {
+	public Vecteur2D multiply(Vecteur2D vect) {
 		double x = (get(0, 0) * vect.getDx()) + (get(0, 1) * vect.getDy());
 		double y = (get(1, 0) * vect.getDx()) + (get(1, 1) * vect.getDy());
 		return new Vecteur2D(x, y);
@@ -92,5 +91,15 @@ public class Matrix2D {
 		}
 		s += "]";
 		return s;
+	}
+	
+	public static class Identity extends Matrix2D {
+		
+		/** Constructeur */
+		public Identity() {
+			super();
+			set(0, 0, 1);
+			set(1, 1, 1);
+		}
 	}
 }

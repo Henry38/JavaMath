@@ -18,55 +18,20 @@ public class Transformation2D {
 	
 	/** Constructeur par defaut */
 	public Transformation2D() {
-		this(new Matrix3D());
+		this(new Matrix3D.Identity());
 	}
 	
-	public static class Identity extends Transformation2D {
-		
-		/** Constructeur */
-		public Identity() {
-			super();
-		}
-	}
-
-	public static class Translation extends Transformation2D {
-		
-		/** Constructeur */
-		public Translation(double dx, double dy) {
-			super();
-			addTranslation(dx, dy);
-		}
-	}
-	
-	public static class Rotation extends Transformation2D {
-		
-		/** Constructeur */
-		public Rotation(double radian) {
-			super();
-			addRotation(radian);
-		}
-	}
-	
-	public static class Scale extends Transformation2D {
-		
-		/** Constructeur */
-		public Scale(double sx, double sy) {
-			super();
-			addScale(sx, sy);
-		}
-	}
-	
-	/** Calcule et retourne la Base2D associee a la transformation */
-	public Base2D toBase2D() {
-		double x1 = matrix.get(0, 0);
-		double y1 = matrix.get(1, 0);
-		double x2 = matrix.get(0, 1);
-		double y2 = matrix.get(1, 1);
-		Vecteur2D ox = new Vecteur2D(x1, y1);
-		Vecteur2D oy = new Vecteur2D(x2, y2);
-		Point2D origine = new Point2D(matrix.get(0, 2), matrix.get(1, 2));
-		return new Base2D(origine, ox, oy);
-	}
+//	/** Calcule et retourne la Base2D associee a la transformation */
+//	public Base2D toBase2D() {
+//		double x1 = matrix.get(0, 0);
+//		double y1 = matrix.get(1, 0);
+//		double x2 = matrix.get(0, 1);
+//		double y2 = matrix.get(1, 1);
+//		Vecteur2D ox = new Vecteur2D(x1, y1);
+//		Vecteur2D oy = new Vecteur2D(x2, y2);
+//		Point2D origine = new Point2D(matrix.get(0, 2), matrix.get(1, 2));
+//		return new Base2D(origine, ox, oy);
+//	}
 	
 	/** Retourne la transformation inverse */
 	public Transformation2D getInverseTransformation() {
@@ -76,12 +41,12 @@ public class Transformation2D {
 	/** Calcul le resultat de la transformation par le Point2D p */
 	public Point2D transform(Point2D p) {
 		double[] v = new double[] {p.getX(), p.getY(), 1};
-		double[] r = multiplication(v);
+		double[] r = multiply(v);
 		return new Point2D(r[0]/r[2], r[1]/r[2]);
 	}
 	
 	/** Effectue la multiplication matrix/point */
-	private double[] multiplication(double[] v) {
+	private double[] multiply(double[] v) {
 		double[] r = new double[3];
 		for (int i = 0; i < 3; i++) {
 			for (int j = 0; j < 3; j++) {
@@ -93,10 +58,9 @@ public class Transformation2D {
 	
 	/** Revient sur la transformation identite */
 	public void clear() {
-		double d;
 		for (int i = 0; i < 3; i++) {
 			for (int j = 0; j < 3; j++) {
-				d = (i == j ? 1 : 0);
+				double d = (i == j ? 1 : 0);
 				matrix.set(i, j, d);
 			}
 		}
@@ -143,7 +107,7 @@ public class Transformation2D {
 	
 	/** Ajoute une transformation a la transformation */
 	public void addTransformation(Transformation2D m) {
-		Matrix3D r = matrix.mult(m.matrix);
+		Matrix3D r = matrix.multiply(m.matrix);
 		for (int i = 0; i < 3; i++) {
 			for (int j = 0; j < 3; j++) {
 				matrix.set(i, j, r.get(i, j));

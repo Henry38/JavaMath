@@ -18,26 +18,26 @@ public class Transformation3D {
 	
 	/** Constructeur par defaut */
 	public Transformation3D() {
-		this(new Matrix4D());
+		this(new Matrix4D.Identity());
 	}
 	
-	/** Calcule et retourne la Base2D associee a la transformation */
-	public Base3D toBase3D() {
-		double x1 = matrix.get(0, 0);
-		double y1 = matrix.get(1, 0);
-		double z1 = matrix.get(2, 0);
-		double x2 = matrix.get(0, 1);
-		double y2 = matrix.get(1, 1);
-		double z2 = matrix.get(2, 1);
-		double x3 = matrix.get(0, 2);
-		double y3 = matrix.get(1, 2);
-		double z3 = matrix.get(2, 2);
-		Vecteur3D ox = new Vecteur3D(x1, y1, z1);
-		Vecteur3D oy = new Vecteur3D(x2, y2, z2);
-		Vecteur3D oz = new Vecteur3D(x3, y3, z3);
-		Point3D origine = new Point3D(matrix.get(0, 2), matrix.get(1, 2), matrix.get(2, 2));
-		return new Base3D(origine, ox, oy, oz);
-	}
+//	/** Calcule et retourne la Base2D associee a la transformation */
+//	public Base3D toBase3D() {
+//		double x1 = matrix.get(0, 0);
+//		double y1 = matrix.get(1, 0);
+//		double z1 = matrix.get(2, 0);
+//		double x2 = matrix.get(0, 1);
+//		double y2 = matrix.get(1, 1);
+//		double z2 = matrix.get(2, 1);
+//		double x3 = matrix.get(0, 2);
+//		double y3 = matrix.get(1, 2);
+//		double z3 = matrix.get(2, 2);
+//		Vecteur3D ox = new Vecteur3D(x1, y1, z1);
+//		Vecteur3D oy = new Vecteur3D(x2, y2, z2);
+//		Vecteur3D oz = new Vecteur3D(x3, y3, z3);
+//		Point3D origine = new Point3D(matrix.get(0, 2), matrix.get(1, 2), matrix.get(2, 2));
+//		return new Base3D(origine, ox, oy, oz);
+//	}
 	
 	/** Retourne la transformation inverse */
 	public Transformation3D getInverseTransformation() {
@@ -47,12 +47,12 @@ public class Transformation3D {
 	/** Calcul le resultat de la transformation par le Point3D p */
 	public Point3D transform(Point3D p) {
 		double[] v = new double[] {p.getX(), p.getY(), p.getZ(), 1};
-		double[] r = multiplication(v);
+		double[] r = multiply(v);
 		return new Point3D(r[0]/r[3], r[1]/r[3], r[2]/r[3]);
 	}
 	
 	/** Effectue la multiplication matrix/point */
-	private double[] multiplication(double[] v) {
+	private double[] multiply(double[] v) {
 		double[] r = new double[4];
 		for (int i = 0; i < 4; i++) {
 			for (int j = 0; j < 4; j++) {
@@ -64,10 +64,9 @@ public class Transformation3D {
 	
 	/** Revient sur la transformation identite */
 	public void clear() {
-		double d;
 		for (int i = 0; i < 4; i++) {
 			for (int j = 0; j < 4; j++) {
-				d = (i == j ? 1 : 0);
+				double d = (i == j ? 1 : 0);
 				matrix.set(i, j, d);
 			}
 		}

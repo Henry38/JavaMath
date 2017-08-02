@@ -9,9 +9,9 @@ public class Matrix3D {
 	/** Constructeur */
 	public Matrix3D() {
 		this.matrix = new double[][] {
-				{1, 0, 0},
-				{0, 1, 0},
-				{0, 0, 1}
+				{0, 0, 0},
+				{0, 0, 0},
+				{0, 0, 0}
 		};
 	}
 	
@@ -74,23 +74,22 @@ public class Matrix3D {
 	}
 	
 	/** Retourne la multiplication matricielle par la matrice matrix */
-	public Matrix3D mult(Matrix3D matrix) {
-		Matrix3D res = new Matrix3D();
-		double d;
+	public Matrix3D multiply(Matrix3D matrix) {
+		Matrix3D m = new Matrix3D();
 		for (int i = 0; i < 3; i++) {
 			for (int j = 0; j < 3; j++) {
-				d = 0;
+				double d = 0;
 				for (int k = 0; k < 3; k++) {
 					d += get(i, k) * matrix.get(k, j);
 				}
-				res.set(i, j, d);
+				m.set(i, j, d);
 			}
 		}
-		return res;
+		return m;
 	}
 	
 	/** Retourne la multiplication matricielle par le vecteur vect */
-	public Vecteur3D mult(Vecteur3D vect) {
+	public Vecteur3D multiply(Vecteur3D vect) {
 		double x = (get(0, 0) * vect.getDx()) + (get(0, 1) * vect.getDy()) + (get(0, 2) * vect.getDz());
 		double y = (get(1, 0) * vect.getDx()) + (get(1, 1) * vect.getDy()) + (get(1, 2) * vect.getDz());
 		double z = (get(2, 0) * vect.getDx()) + (get(2, 1) * vect.getDy()) + (get(2, 2) * vect.getDz());
@@ -118,5 +117,16 @@ public class Matrix3D {
 		}
 		s += "]";
 		return s;
+	}
+	
+	public static class Identity extends Matrix3D {
+		
+		/** Constructeur */
+		public Identity() {
+			super();
+			set(0, 0, 1);
+			set(1, 1, 1);
+			set(2, 2, 1);
+		}
 	}
 }
