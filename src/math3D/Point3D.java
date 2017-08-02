@@ -27,6 +27,7 @@ public class Point3D {
 	}
 	
 	/** Clone et retourne le point */
+	@Override
 	public Object clone() {
 		return new Point3D(getX(), getY(), getZ());
 	}
@@ -136,6 +137,7 @@ public class Point3D {
 	}
 	
 	/** Representation textuelle d'un Point3D */
+	@Override
 	public String toString() {
 		return "(" + getX() + ", " + getY() + ", " + getZ() + ")";
 	}

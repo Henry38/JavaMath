@@ -123,6 +123,7 @@ public class Transformation2D {
 	}
 	
 	/** Representation textuelle d'une transformation */
+	@Override
 	public String toString() {
 		return matrix.toString();
 	}

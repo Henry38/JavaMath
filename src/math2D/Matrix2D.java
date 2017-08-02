@@ -71,6 +71,7 @@ public class Matrix2D {
 	}
 	
 	/** Representrion textuelle d'une matrice */
+	@Override
 	public String toString() {
 		String s = "[";
 		for (int i = 0 ; i < 2; i++) {

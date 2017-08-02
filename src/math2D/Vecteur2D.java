@@ -32,6 +32,7 @@ public class Vecteur2D {
 	}
 	
 	/** Clone et retourne le vecteur */
+	@Override
 	public Object clone() {
 		return new Vecteur2D(getDx(), getDy());
 	}
@@ -168,6 +169,7 @@ public class Vecteur2D {
 	}
 	
 	/** Representation textuelle d'un Vecteur2D */
+	@Override
 	public String toString() {
 		return "(" + ((int)(getDx()*100))/100.0 + " , " + ((int)(getDy()*100))/100.0 + ")";
 	}

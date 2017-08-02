@@ -28,6 +28,7 @@ public class Point4D {
 	}
 	
 	/** Clone et retourne le point */
+	@Override
 	public Object clone() {
 		return new Point4D(getX(), getY(), getZ(), getW());
 	}
@@ -111,6 +112,7 @@ public class Point4D {
 	}
 	
 	/** Representation textuelle d'un Point3D */
+	@Override
 	public String toString() {
 		return "(" + getX() + ", " + getY() + ", " + getZ() + ", " + getW() + ")";
 	}

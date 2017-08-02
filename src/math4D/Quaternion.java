@@ -171,6 +171,7 @@ public class Quaternion {
 	}
 	
 	/** Representation textuelle d'un Quaternion */
+	@Override
 	public String toString() {
 		Vecteur3D vect = getImag();
 		return "(" + ((int)(getReal()*100))/100.0 + " , " + ((int)(vect.getDx()*100))/100.0 + " , " + ((int)(vect.getDy()*100))/100.0 + " , " + ((int)(vect.getDz()*100))/100.0 + ")";

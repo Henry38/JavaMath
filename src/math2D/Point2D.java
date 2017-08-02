@@ -27,6 +27,7 @@ public class Point2D {
 	}
 	
 	/** Clone et retourne le point */
+	@Override
 	public Object clone() {
 		return new Point2D(getX(), getY());
 	}
@@ -106,6 +107,7 @@ public class Point2D {
 	}
 	
 	/** Representation textuelle d'un Point2D */
+	@Override
 	public String toString() {
 		return "(" + getX() + ", " + getY() + ")";
 	}

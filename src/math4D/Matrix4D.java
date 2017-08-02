@@ -101,6 +101,7 @@ public class Matrix4D {
 	}
 	
 	/** Representrion textuelle d'une matrice */
+	@Override
 	public String toString() {
 		String s = "";
 		for (int i = 0 ; i < 4; i++) {

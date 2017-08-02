@@ -34,6 +34,7 @@ public class Vecteur3D {
 	}
 	
 	/** Clone et retourne le vecteur */
+	@Override
 	public Object clone() {
 		return new Vecteur3D(getDx(), getDy(), getDz());
 	}
@@ -204,6 +205,7 @@ public class Vecteur3D {
 	}
 	
 	/** Representation textuelle d'un Vecteur3D */
+	@Override
 	public String toString() {
 		return "(" + ((int)(getDx()*100))/100.0 + " , " + ((int)(getDy()*100))/100.0 + " , " + ((int)(getDz()*100))/100.0 + ")";
 	}

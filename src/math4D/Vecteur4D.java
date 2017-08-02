@@ -36,6 +36,7 @@ public class Vecteur4D {
 	}
 	
 	/** Clone et retourne le vecteur */
+	@Override
 	public Object clone() {
 		return new Vecteur4D(getDx(), getDy(), getDz(), getDw());
 	}
@@ -196,6 +197,7 @@ public class Vecteur4D {
 	}
 	
 	/** Representation textuelle d'un Vecteur2D */
+	@Override
 	public String toString() {
 		return "(" + ((int)(getDx()*100))/100.0 + " , " + ((int)(getDy()*100))/100.0 + " , " + ((int)(getDz()*100))/100.0 + " , " + ((int)(getDw()*100))/100.0 + ")";
 	}
