@@ -44,7 +44,7 @@ public class Transformation3D {
 		return new Transformation3D(matrix.getInverse());
 	}
 	
-	/** Calcul le resultat de la transformation par le Point3D p */
+	/** Calcul le resultat de la transformation du Point3D p */
 	public Point3D transform(Point3D p) {
 		double[] v = new double[] {p.getX(), p.getY(), p.getZ(), 1};
 		double[] r = multiply(v);
