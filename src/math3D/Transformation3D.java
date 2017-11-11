@@ -79,6 +79,11 @@ public class Transformation3D {
 		matrix.set(2, 3, matrix.get(2, 3) + dz);
 	}
 	
+	/** Ajoute une translation a la transformation */
+	public void addTranslation(Vecteur3D vect) {
+		addTranslation(vect.getDx(), vect.getDy(), vect.getDz());
+	}
+	
 	/** Ajoute une rotation a la transformation */
 	public void addRotation(Vecteur3D axe, double radian) {
 		double cos = Math.cos(radian);
