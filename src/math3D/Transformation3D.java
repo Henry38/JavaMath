@@ -85,16 +85,16 @@ public class Transformation3D {
 	}
 	
 	/** Ajoute une rotation a la transformation */
-	public void addRotation(Vecteur3D axe, double radian) {
+	public void addRotation(Vecteur3D axis, double radian) {
 		double cos = Math.cos(radian);
 		double sin = Math.sin(radian);
 		double x = matrix.get(0, 3);
 		double y = matrix.get(1, 3);
 		double z = matrix.get(2, 3);
-		double d = axe.getNorm();
-		double dx = axe.getDx() / d;
-		double dy = axe.getDy() / d;
-		double dz = axe.getDz() / d;
+		double d = axis.getNorm();
+		double dx = axis.getDx() / d;
+		double dy = axis.getDy() / d;
+		double dz = axis.getDz() / d;
 		double mc = 1 - cos;
 		// Matrice de rotation
 		double[][] r = new double[][] {
