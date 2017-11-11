@@ -105,6 +105,12 @@ public class Transformation2D {
 		matrix.set(1, 1, sy * matrix.get(1, 1));
 	}
 	
+	/** Ajoute un cisaillement a la transformation */
+	public void addShear(double shx, double shy) {
+		matrix.set(0, 1, shx + matrix.get(0, 1));
+		matrix.set(1, 0, shy + matrix.get(1, 0));
+	}
+	
 	/** Combine la transformation courante avec la transformation t */
 	public void compose(Transformation2D t) {
 		Matrix3D m = matrix.multiply(t.matrix);
