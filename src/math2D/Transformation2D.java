@@ -99,6 +99,18 @@ public class Transformation2D {
 		matrix.set(1, 1, m11);
 	}
 	
+	/** Ajoute une rotation autour du point (x,y) */
+	public void addRotation(double x, double y, double radian) {
+		addTranslation(-x, -y);
+		addRotation(radian);
+		addTranslation(x, y);		
+	}
+	
+	/** Ajoute une rotation autour du point p */
+	public void addRotation(Point2D p, double radian) {
+		addRotation(p.getX(), p.getY(), radian);
+	}
+	
 	/** Ajoute une homothetie a la transformation */
 	public void addScale(double sx, double sy) {
 		matrix.set(0, 0, sx * matrix.get(0, 0));
