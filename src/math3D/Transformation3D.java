@@ -132,21 +132,21 @@ public class Transformation3D {
 		matrix.set(2, 2, sz * matrix.get(2, 2));
 	}
 	
-	/** Ajoute une transformation a la transformation */
-	public void addTransformation(Transformation3D m) {
-		Matrix4D r = matrix.mult(m.matrix);
+	/** Combine la transformation courante avec transformation t */
+	public void compose(Transformation3D t) {
+		Matrix4D m = matrix.mult(t.matrix);
 		for (int i = 0; i < 4; i++) {
 			for (int j = 0; j < 4; j++) {
-				matrix.set(i, j, r.get(i, j));
+				matrix.set(i, j, m.get(i, j));
 			}
 		}
 	}
 	
-	/** Combine les deux transformations m1 et m2 */
-	public static Transformation3D addTransformation(Transformation3D m1, Transformation3D m2) {
-		Transformation3D r = new Transformation3D(m1);
-		r.addTransformation(m2);
-		return r;
+	/** Combine les deux transformations t1 et t2 */
+	public static Transformation3D compose(Transformation3D t1, Transformation3D t2) {
+		Transformation3D t = new Transformation3D(t1);
+		t.compose(t2);
+		return t;
 	}
 	
 	/** Representation textuelle d'une transformation */
