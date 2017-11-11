@@ -72,7 +72,12 @@ public class Transformation2D {
 		matrix.set(1, 2, matrix.get(1, 2) + dy);
 	}
 	
-	/** Ajoute une rotation a la transformation */
+	/** Ajoute une translation a la transformation */
+	public void addTranslation(Point2D p) {
+		addTranslation(p.getX(), p.getY());
+	}
+	
+	/** Ajoute une rotation autour de l'origine */
 	public void addRotation(double radian) {
 		double cos = Math.cos(radian);
 		double sin = Math.sin(radian);
