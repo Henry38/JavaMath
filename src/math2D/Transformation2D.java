@@ -73,8 +73,8 @@ public class Transformation2D {
 	}
 	
 	/** Ajoute une translation a la transformation */
-	public void addTranslation(Point2D p) {
-		addTranslation(p.getX(), p.getY());
+	public void addTranslation(Vecteur2D vect) {
+		addTranslation(vect.getDx(), vect.getDy());
 	}
 	
 	/** Ajoute une rotation autour de l'origine */
