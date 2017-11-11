@@ -1,76 +1,51 @@
 package math2D;
 
-public class Base2D {
-	
-	private Point2D origine;
-	private Vecteur2D ox, oy;
+public class Base2D extends Transformation2D {
 	
 	/** Constructeur */
-	public Base2D(Point2D origine, Vecteur2D oi, Vecteur2D oj) {
-		this.origine = new Point2D(origine);
-		this.ox = oi;
-		this.oy = oj;
+	public Base2D(Point2D origin, Vecteur2D ox, Vecteur2D oy) {
+		super();
+		matrix.set(0, 2, origin.getX());
+		matrix.set(1, 2, origin.getY());
+		matrix.set(0, 0, ox.getDx());
+		matrix.set(1, 0, ox.getDy());
+		matrix.set(0, 1, oy.getDx());
+		matrix.set(1, 1, oy.getDy());
 	}
 	
 	/** Constructeur */
-	public Base2D(Point2D origine) {
-		this(origine, new Vecteur2D(1, 0), new Vecteur2D(0, 1));
+	public Base2D(Point2D origin) {
+		this(origin, new Vecteur2D(1, 0), new Vecteur2D(0, 1));
 	}
 	
-	/** Constructeur */
+	/** Constructeur par defaut */
 	public Base2D() {
 		this(new Point2D(0, 0));
 	}
 	
 	/** Retourne l'origine */
-	public final Point2D getOrigine() {
-		return origine;
+	public Point2D getOrigin() {
+		double x = matrix.get(0, 2);
+		double y = matrix.get(1, 2);
+		return new Point2D(x, y);
 	}
 	
 	/** Retourne l'axe Ox */
-	public final Vecteur2D getOx() {
-		return ox;
+	public Vecteur2D getOx() {
+		double x1 = matrix.get(0, 0);
+		double y1 = matrix.get(1, 0);
+		return new Vecteur2D(x1, y1);
 	}
 	
 	/** Retourne l'axe Oy */
-	public final Vecteur2D getOy() {
-		return oy;
+	public Vecteur2D getOy() {
+		double x2 = matrix.get(0, 1);
+		double y2 = matrix.get(1, 1);
+		return new Vecteur2D(x2, y2);
 	}
 	
 	/** Retourne les deux vecteurs de la base */
-	public final Vecteur2D[] getVecteurs() {
-		return new Vecteur2D[] {ox, oy};
-	}
-	
-	/** Translate la base */
-	public void translation(double dx, double dy) {
-		origine.translation(dx, dy);
-	}
-	
-	/** Translate la base */
-	public void translation(Vecteur2D t) {
-		translation(t.getDx(), t.getDy());
-	}
-	
-	/** Rotation dans le sens trigonometrique autour de l'origine avec l'angle donne en radian */
-	public void rotation(double radian) {
-		ox.rotation(radian);
-		oy.rotation(radian);
-	}
-	
-	/** Change l'echelle en Ox */
-	public void scaleX(double sx) {
-		ox.multiply(sx);
-	}
-	
-	/** Change l'echelle en Oy */
-	public void scaleY(double sy) {
-		oy.multiply(sy);
-	}
-	
-	/** Change l'echelle sur les axes du repere */
-	public void scale(double r) {
-		scaleX(r);
-		scaleY(r);
+	public Vecteur2D[] getVecteurs() {
+		return new Vecteur2D[] {getOx(), getOy()};
 	}
 }

@@ -4,7 +4,7 @@ import math3D.Matrix3D;
 
 public class Transformation2D {
 	
-	private Matrix3D matrix;
+	protected Matrix3D matrix;
 	
 	/** Constructeur */
 	public Transformation2D(Matrix3D matrix) {
@@ -21,17 +21,17 @@ public class Transformation2D {
 		this(new Matrix3D.Identity());
 	}
 	
-//	/** Retourne la Base2D associee a la transformation */
-//	public Base2D toBase2D() {
-//		double x1 = matrix.get(0, 0);
-//		double y1 = matrix.get(1, 0);
-//		double x2 = matrix.get(0, 1);
-//		double y2 = matrix.get(1, 1);
-//		Vecteur2D ox = new Vecteur2D(x1, y1);
-//		Vecteur2D oy = new Vecteur2D(x2, y2);
-//		Point2D origine = new Point2D(matrix.get(0, 2), matrix.get(1, 2));
-//		return new Base2D(origine, ox, oy);
-//	}
+	/** Retourne la Base2D associee a la transformation */
+	public Base2D toBase2D() {
+		double x1 = matrix.get(0, 0);
+		double y1 = matrix.get(1, 0);
+		double x2 = matrix.get(0, 1);
+		double y2 = matrix.get(1, 1);
+		Vecteur2D ox = new Vecteur2D(x1, y1);
+		Vecteur2D oy = new Vecteur2D(x2, y2);
+		Point2D origin = new Point2D(matrix.get(0, 2), matrix.get(1, 2));
+		return new Base2D(origin, ox, oy);
+	}
 	
 	/** Retourne la transformation inverse */
 	public Transformation2D getInverseTransformation() {
