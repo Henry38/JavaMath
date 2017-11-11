@@ -105,21 +105,21 @@ public class Transformation2D {
 		matrix.set(1, 1, sy * matrix.get(1, 1));
 	}
 	
-	/** Ajoute une transformation a la transformation */
-	public void addTransformation(Transformation2D m) {
-		Matrix3D r = matrix.multiply(m.matrix);
+	/** Combine la transformation courante avec la transformation t */
+	public void compose(Transformation2D t) {
+		Matrix3D m = matrix.multiply(t.matrix);
 		for (int i = 0; i < 3; i++) {
 			for (int j = 0; j < 3; j++) {
-				matrix.set(i, j, r.get(i, j));
+				matrix.set(i, j, m.get(i, j));
 			}
 		}
 	}
 	
-	/** Combine les deux transformations m1 et m2 */
-	public static Transformation2D addTransformation(Transformation2D m1, Transformation2D m2) {
-		Transformation2D r = new Transformation2D(m1);
-		r.addTransformation(m2);
-		return r;
+	/** Combine les deux transformations t1 et t2 */
+	public static Transformation2D compose(Transformation2D t1, Transformation2D t2) {
+		Transformation2D t = new Transformation2D(t1);
+		t.compose(t2);
+		return t;
 	}
 	
 	/** Representation textuelle d'une transformation */
