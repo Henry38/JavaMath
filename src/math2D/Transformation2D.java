@@ -38,7 +38,7 @@ public class Transformation2D {
 		return new Transformation2D(matrix.getInverse());
 	}
 	
-	/** Calcul le resultat de la transformation par le Point2D p */
+	/** Calcul le resultat de la transformation du Point2D p */
 	public Point2D transform(Point2D p) {
 		double[] v = new double[] {p.getX(), p.getY(), 1};
 		double[] r = multiply(v);
