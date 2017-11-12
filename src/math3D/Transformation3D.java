@@ -1,6 +1,7 @@
 package math3D;
 
 import math4D.Matrix4D;
+import math4D.Vecteur4D;
 
 public class Transformation3D {
 	
@@ -46,20 +47,9 @@ public class Transformation3D {
 	
 	/** Calcul le resultat de la transformation du Point3D p */
 	public Point3D transform(Point3D p) {
-		double[] v = new double[] {p.getX(), p.getY(), p.getZ(), 1};
-		double[] r = multiply(v);
-		return new Point3D(r[0]/r[3], r[1]/r[3], r[2]/r[3]);
-	}
-	
-	/** Effectue la multiplication matrix/point */
-	private double[] multiply(double[] v) {
-		double[] r = new double[4];
-		for (int i = 0; i < 4; i++) {
-			for (int j = 0; j < 4; j++) {
-				r[i] += matrix.get(i, j) * v[j];
-			}
-		}
-		return r;
+		Vecteur4D hp = new Vecteur4D(p.getX(), p.getY(), p.getZ(), 1);
+		Vecteur4D r = matrix.mult(hp);
+		return new Point3D(r.getDx()/r.getDw(), r.getDy()/r.getDw(), r.getDz()/r.getDw());
 	}
 	
 	/** Revient sur la transformation identite */
