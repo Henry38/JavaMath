@@ -1,6 +1,7 @@
 package math2D;
 
 import math3D.Matrix3D;
+import math3D.Vecteur3D;
 
 public class Transformation2D {
 	
@@ -40,20 +41,9 @@ public class Transformation2D {
 	
 	/** Calcul le resultat de la transformation du Point2D p */
 	public Point2D transform(Point2D p) {
-		double[] v = new double[] {p.getX(), p.getY(), 1};
-		double[] r = multiply(v);
-		return new Point2D(r[0]/r[2], r[1]/r[2]);
-	}
-	
-	/** Effectue la multiplication matrix/point */
-	private double[] multiply(double[] v) {
-		double[] r = new double[3];
-		for (int i = 0; i < 3; i++) {
-			for (int j = 0; j < 3; j++) {
-				r[i] += matrix.get(i, j) * v[j];
-			}
-		}
-		return r;
+		Vecteur3D hp = new Vecteur3D(p.getX(), p.getY(), 1);
+		Vecteur3D r = matrix.multiply(hp);
+		return new Point2D(r.getDx()/r.getDz(), r.getDy()/r.getDz());
 	}
 	
 	/** Revient sur la transformation identite */
