@@ -39,14 +39,14 @@ public class Transformation2D {
 		return new Transformation2D(matrix.getInverse());
 	}
 	
-	/** Calcul le resultat de la transformation du point (x,y) */
+	/** Calcule le resultat de la transformation du point (x,y) */
 	public Point2D transform(double x, double y) {
 		Vecteur3D hp = new Vecteur3D(x, y, 1);
 		Vecteur3D r = matrix.multiply(hp);
 		return new Point2D(r.getDx()/r.getDz(), r.getDy()/r.getDz());
 	}
 	
-	/** Calcul le resultat de la transformation du Point2D p */
+	/** Calcule le resultat de la transformation du Point2D p */
 	public Point2D transform(Point2D p) {
 		return transform(p.getX(), p.getY());
 	}

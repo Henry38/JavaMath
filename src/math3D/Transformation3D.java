@@ -36,8 +36,8 @@ public class Transformation3D {
 		Vecteur3D ox = new Vecteur3D(x1, y1, z1);
 		Vecteur3D oy = new Vecteur3D(x2, y2, z2);
 		Vecteur3D oz = new Vecteur3D(x3, y3, z3);
-		Point3D origine = new Point3D(matrix.get(0, 2), matrix.get(1, 2), matrix.get(2, 2));
-		return new Base3D(origine, ox, oy, oz);
+		Point3D origin = new Point3D(matrix.get(0, 2), matrix.get(1, 2), matrix.get(2, 2));
+		return new Base3D(origin, ox, oy, oz);
 	}
 	
 	/** Retourne la transformation inverse */
@@ -45,14 +45,14 @@ public class Transformation3D {
 		return new Transformation3D(matrix.getInverse());
 	}
 	
-	/** Calcul le resultat de la transformation du point (x,y,z) */
+	/** Calcule le resultat de la transformation du point (x,y,z) */
 	public Point3D transform(double x, double y, double z) {
 		Vecteur4D hp = new Vecteur4D(x, y, z, 1);
 		Vecteur4D r = matrix.mult(hp);
 		return new Point3D(r.getDx()/r.getDw(), r.getDy()/r.getDw(), r.getDz()/r.getDw());
 	}
 	
-	/** Calcul le resultat de la transformation du Point3D p */
+	/** Calcule le resultat de la transformation du Point3D p */
 	public Point3D transform(Point3D p) {
 		return transform(p.getX(), p.getY(), p.getZ());
 	}
@@ -137,7 +137,7 @@ public class Transformation3D {
 		matrix.set(2, 2, sz * matrix.get(2, 2));
 	}
 	
-	/** Combine la transformation courante avec transformation t */
+	/** Combine la transformation courante avec la transformation t */
 	public void compose(Transformation3D t) {
 		Matrix4D m = matrix.mult(t.matrix);
 		for (int i = 0; i < 4; i++) {

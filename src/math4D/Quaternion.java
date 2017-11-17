@@ -133,7 +133,7 @@ public class Quaternion {
 		return quat;
 	}
 	
-	/** Calcul le produit de deux quaternion */
+	/** Retourne le produit de deux quaternion */
 	public Quaternion multiply(Quaternion q) {
 		Vecteur3D imag = new Vecteur3D(getImag());
 		Vecteur3D qimag = new Vecteur3D(q.getImag());
