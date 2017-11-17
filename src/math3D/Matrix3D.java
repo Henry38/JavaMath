@@ -35,6 +35,15 @@ public class Matrix3D {
 		matrix[i][j] = d;
 	}
 	
+	/** Set la matrice m */
+	public void set(Matrix3D m) {
+		for (int i = 0; i < 3; i++) {
+			for (int j = 0; j < 3; j++) {
+				set(i, j, m.get(i, j));
+			}
+		}
+	}
+	
 	/** Retourne la matrice privee de la ligne u et de la colonne v */
 	public Matrix2D getSubMatrix(int u, int v) {
 		Matrix2D m = new Matrix2D();

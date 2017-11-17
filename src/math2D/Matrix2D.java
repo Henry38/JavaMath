@@ -32,6 +32,15 @@ public class Matrix2D {
 		matrix[i][j] = d;
 	}
 	
+	/** Set la matrice m */
+	public void set(Matrix2D m) {
+		for (int i = 0; i < 2; i++) {
+			for (int j = 0; j < 2; j++) {
+				set(i, j, m.get(i, j));
+			}
+		}
+	}
+	
 	/** Retourne le determinant de la matrice */
 	public double getDeterminant() {
 		return (get(0, 0)*get(1, 1) - get(0, 1)*get(1, 0));
