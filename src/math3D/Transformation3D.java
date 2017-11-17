@@ -45,11 +45,16 @@ public class Transformation3D {
 		return new Transformation3D(matrix.getInverse());
 	}
 	
-	/** Calcul le resultat de la transformation du Point3D p */
-	public Point3D transform(Point3D p) {
-		Vecteur4D hp = new Vecteur4D(p.getX(), p.getY(), p.getZ(), 1);
+	/** Calcul le resultat de la transformation du point (x,y,z) */
+	public Point3D transform(double x, double y, double z) {
+		Vecteur4D hp = new Vecteur4D(x, y, z, 1);
 		Vecteur4D r = matrix.mult(hp);
 		return new Point3D(r.getDx()/r.getDw(), r.getDy()/r.getDw(), r.getDz()/r.getDw());
+	}
+	
+	/** Calcul le resultat de la transformation du Point3D p */
+	public Point3D transform(Point3D p) {
+		return transform(p.getX(), p.getY(), p.getZ());
 	}
 	
 	/** Revient sur la transformation identite */
@@ -72,6 +77,11 @@ public class Transformation3D {
 	/** Ajoute une translation a la transformation */
 	public void addTranslation(Vecteur3D vect) {
 		addTranslation(vect.getDx(), vect.getDy(), vect.getDz());
+	}
+	
+	/** Ajoute une translation a la transformation */
+	public void addTranslation(Point3D p) {
+		addTranslation(p.getX(), p.getY(), p.getZ());
 	}
 	
 	/** Ajoute une rotation a la transformation */
