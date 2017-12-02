@@ -22,24 +22,6 @@ public class Transformation3D {
 		this(new Matrix4D.Identity());
 	}
 	
-	/** Calcule et retourne la Base3D associee a la transformation */
-	public Base3D toBase3D() {
-		double x1 = matrix.get(0, 0);
-		double y1 = matrix.get(1, 0);
-		double z1 = matrix.get(2, 0);
-		double x2 = matrix.get(0, 1);
-		double y2 = matrix.get(1, 1);
-		double z2 = matrix.get(2, 1);
-		double x3 = matrix.get(0, 2);
-		double y3 = matrix.get(1, 2);
-		double z3 = matrix.get(2, 2);
-		Vecteur3D ox = new Vecteur3D(x1, y1, z1);
-		Vecteur3D oy = new Vecteur3D(x2, y2, z2);
-		Vecteur3D oz = new Vecteur3D(x3, y3, z3);
-		Point3D origin = new Point3D(matrix.get(0, 2), matrix.get(1, 2), matrix.get(2, 2));
-		return new Base3D(origin, ox, oy, oz);
-	}
-	
 	/** Retourne la transformation inverse */
 	public Transformation3D getInverseTransformation() {
 		return new Transformation3D(matrix.getInverse());
